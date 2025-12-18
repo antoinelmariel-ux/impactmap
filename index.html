@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impact Mapping</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="title-group">
+      <h1>Impact Mapping</h1>
+      <p class="subtitle">Six colonnes avec interactions clavier</p>
+    </div>
+    <div class="controls">
+      <button id="add-root" aria-label="Ajouter un objectif">+ Objectif</button>
+      <div class="zoom-controls" aria-label="Contrôles de zoom">
+        <button id="zoom-out" aria-label="Zoom out">−</button>
+        <button id="zoom-in" aria-label="Zoom in">+</button>
+        <button id="fit" aria-label="Ajuster à l'écran">Ajuster</button>
+        <button id="reset" aria-label="Réinitialiser la vue">Réinitialiser</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="canvas-wrapper">
+      <div id="viewport">
+        <div id="panzoom">
+          <svg id="connections"></svg>
+          <div id="columns"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Version <span id="version">1.1.0</span> – Interface impact mapping avec connecteurs, zoom et persistance locale.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
