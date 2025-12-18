@@ -7,7 +7,7 @@ const COLUMN_LABELS = [
   "Probabilité",
 ];
 
-const APP_VERSION = "1.1.0";
+const APP_VERSION = "1.2.0";
 const STORAGE_KEY = "impactmap-nodes";
 const VIEW_KEY = "impactmap-view";
 
@@ -28,6 +28,7 @@ let nodes = [];
 let activeId = null;
 let viewState = { scale: 1, offsetX: 0, offsetY: 0 };
 let rafToken = null;
+let shouldFocusActive = false;
 
 function uid() {
   return crypto.randomUUID();
@@ -47,9 +48,10 @@ function load() {
   }
 
   if (nodes.length === 0) {
-    const root = { id: uid(), title: "Nouvel objectif", column: 0, parentId: null };
+    const root = { id: uid(), title: "", column: 0, parentId: null };
     nodes.push(root);
     activeId = root.id;
+    shouldFocusActive = true;
   } else if (nodes.length > 0) {
     activeId = nodes[0].id;
   }
@@ -87,6 +89,7 @@ function render() {
 
   applyTransform();
   scheduleConnections();
+  focusActiveInput();
 }
 
 function renderNode(node) {
@@ -135,6 +138,7 @@ function renderNode(node) {
 }
 
 function setActive(id) {
+  shouldFocusActive = true;
   activeId = id;
   render();
   centerOnActive();
@@ -142,21 +146,24 @@ function setActive(id) {
 }
 
 function addRootNode() {
-  const root = { id: uid(), title: "Nouvel objectif", column: 0, parentId: null };
+  const root = { id: uid(), title: "", column: 0, parentId: null };
   nodes.push(root);
+  shouldFocusActive = true;
   setActive(root.id);
 }
 
 function addSibling(node) {
-  const sibling = { id: uid(), title: "Nouvel élément", column: node.column, parentId: node.parentId };
+  const sibling = { id: uid(), title: "", column: node.column, parentId: node.parentId };
   nodes.push(sibling);
+  shouldFocusActive = true;
   setActive(sibling.id);
 }
 
 function addChild(node) {
   const nextColumn = Math.min(node.column + 1, COLUMN_LABELS.length - 1);
-  const child = { id: uid(), title: "Nouvel élément", column: nextColumn, parentId: node.id };
+  const child = { id: uid(), title: "", column: nextColumn, parentId: node.id };
   nodes.push(child);
+  shouldFocusActive = true;
   setActive(child.id);
 }
 
@@ -197,6 +204,18 @@ function handleKeydown(event) {
   }
 }
 
+function focusActiveInput() {
+  if (!shouldFocusActive || !activeId) return;
+  requestAnimationFrame(() => {
+    const input = document.querySelector(`.node.active .node-title`);
+    if (input) {
+      input.focus();
+      input.select();
+      shouldFocusActive = false;
+    }
+  });
+}
+
 function scheduleConnections() {
   if (rafToken) cancelAnimationFrame(rafToken);
   rafToken = requestAnimationFrame(updateConnections);
@@ -231,12 +250,18 @@ function updateConnections() {
     const endX = childRect.x;
     const endY = childRect.y + childRect.height / 2;
     const controlX = (startX + endX) / 2;
-    paths.push(`M ${startX} ${startY} C ${controlX} ${startY}, ${controlX} ${endY}, ${endX} ${endY}`);
+    const curveOffset = (endY - startY) * 0.15;
+    paths.push(
+      `M ${startX} ${startY} C ${controlX} ${startY + curveOffset}, ${controlX} ${endY - curveOffset}, ${endX} ${endY}`
+    );
   });
 
   connections.setAttribute("viewBox", `0 0 ${viewport.clientWidth} ${viewport.clientHeight}`);
   connections.innerHTML = paths
-    .map((d) => `<path d="${d}" fill="none" stroke="rgba(47,111,237,0.5)" stroke-width="2.4" />`)
+    .map(
+      (d) =>
+        `<path d="${d}" fill="none" stroke="rgba(47,111,237,0.5)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />`
+    )
     .join("");
 }
 
@@ -322,6 +347,7 @@ function init() {
   render();
   applyTransform();
   dragPan();
+  focusActiveInput();
 
   document.addEventListener("keydown", handleKeydown);
   addRoot.addEventListener("click", addRootNode);
