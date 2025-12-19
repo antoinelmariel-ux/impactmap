@@ -7,7 +7,7 @@ const COLUMN_LABELS = [
   "Probabilité",
 ];
 
-const APP_VERSION = "1.2.0";
+const APP_VERSION = "1.2.1";
 const STORAGE_KEY = "impactmap-nodes";
 const VIEW_KEY = "impactmap-view";
 
@@ -110,6 +110,7 @@ function renderNode(node) {
     save();
   });
   input.addEventListener("focus", () => setActive(node.id));
+  input.addEventListener("keydown", (event) => handleInputKeydown(event, node));
 
   const actions = document.createElement("div");
   actions.className = "node-actions";
@@ -135,6 +136,21 @@ function renderNode(node) {
   card.append(label, input, actions);
   card.addEventListener("click", () => setActive(node.id));
   return card;
+}
+
+function handleInputKeydown(event, node) {
+  if (event.key === "Tab" && !event.shiftKey) {
+    event.preventDefault();
+    event.stopPropagation();
+    addChild(node);
+    return;
+  }
+
+  if (event.key === "Enter") {
+    event.preventDefault();
+    event.stopPropagation();
+    addSibling(node);
+  }
 }
 
 function setActive(id) {
