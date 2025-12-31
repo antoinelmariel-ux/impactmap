@@ -322,6 +322,29 @@
         --showcase-highlight-soft: rgba(148, 197, 255, 0.7);
         --showcase-shadow-soft: rgba(14, 165, 233, 0.32);
         --showcase-shadow-strong: rgba(14, 165, 233, 0.4);
+        --showcase-radius-panel: 30px;
+        --showcase-radius-card: 28px;
+        --showcase-radius-chip: 999px;
+        --showcase-radius-button: 999px;
+        --showcase-radius-input: 18px;
+        --showcase-radius-hero: 32px;
+        --showcase-radius-section: 42px;
+        --showcase-letter-spacing-title: -0.01em;
+        --showcase-letter-spacing-body: 0em;
+        --showcase-letter-spacing-eyebrow: 0.4em;
+        --showcase-letter-spacing-button: 0.38em;
+        --showcase-letter-spacing-label: 0.3em;
+        --showcase-letter-spacing-chip: 0.2em;
+        --showcase-text-transform-title: none;
+        --showcase-text-transform-eyebrow: uppercase;
+        --showcase-text-transform-button: uppercase;
+        --showcase-text-transform-label: uppercase;
+        --showcase-text-transform-chip: uppercase;
+        --showcase-title-weight: 700;
+        --showcase-card-shadow: 0 28px 70px rgba(15, 23, 42, 0.15);
+        --showcase-panel-shadow: 0 32px 80px rgba(15, 23, 42, 0.35);
+        --showcase-section-before: linear-gradient(120deg, rgba(148, 197, 255, 0.15), transparent 60%);
+        --showcase-section-after: radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.25), transparent 45%);
         font-family: var(--showcase-font, 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
         color: var(--showcase-text-strong, #f8fafc);
       }
@@ -383,11 +406,11 @@
         align-items: center;
         gap: 0.45rem;
         font-size: 0.7rem;
-        letter-spacing: 0.38em;
-        text-transform: uppercase;
+        letter-spacing: var(--showcase-letter-spacing-button, 0.38em);
+        text-transform: var(--showcase-text-transform-button, uppercase);
         font-weight: 600;
         padding: 0.65rem 1.4rem;
-        border-radius: 999px;
+        border-radius: var(--showcase-radius-button, 999px);
         border: 1px solid transparent;
         transition: filter 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
         backdrop-filter: blur(16px);
@@ -431,11 +454,11 @@
         position: sticky;
         top: clamp(1rem, 3vw, 2rem);
         z-index: 30;
-        border-radius: 30px;
+        border-radius: var(--showcase-radius-panel, 30px);
         padding: clamp(1.5rem, 3vw, 2.5rem);
         background: var(--showcase-surface, rgba(8, 13, 22, 0.78));
         border: 1px solid var(--showcase-border-strong, rgba(148, 163, 184, 0.25));
-        box-shadow: 0 32px 80px rgba(15, 23, 42, 0.35);
+        box-shadow: var(--showcase-panel-shadow, 0 32px 80px rgba(15, 23, 42, 0.35));
         backdrop-filter: blur(24px);
       }
 
@@ -462,8 +485,8 @@
       }
 
       [data-showcase-theme] .aurora-eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 0.4em;
+        text-transform: var(--showcase-text-transform-eyebrow, uppercase);
+        letter-spacing: var(--showcase-letter-spacing-eyebrow, 0.4em);
         font-size: 0.65rem;
         color: var(--showcase-highlight-strong, rgba(148, 197, 255, 0.85));
       }
@@ -512,15 +535,15 @@
 
       [data-showcase-theme] .aurora-field__label {
         font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.3em;
+        text-transform: var(--showcase-text-transform-label, uppercase);
+        letter-spacing: var(--showcase-letter-spacing-label, 0.3em);
         color: var(--showcase-text-soft, rgba(203, 213, 225, 0.9));
       }
 
       [data-showcase-theme] .aurora-form-control {
         background: rgba(15, 23, 42, 0.55);
         border: 1px solid var(--showcase-border-soft, rgba(148, 163, 184, 0.28));
-        border-radius: 18px;
+        border-radius: var(--showcase-radius-input, 18px);
         padding: 0.75rem 0.9rem;
         color: var(--showcase-text-strong, #f8fafc);
         font-size: 0.9rem;
@@ -731,17 +754,17 @@
         content: '';
         position: absolute;
         inset: 0;
-        border-radius: 42px;
+        border-radius: var(--showcase-radius-section, 42px);
         opacity: 0.15;
         pointer-events: none;
       }
 
       [data-showcase-theme] .aurora-section::before {
-        background: linear-gradient(120deg, rgba(148, 197, 255, 0.15), transparent 60%);
+        background: var(--showcase-section-before, linear-gradient(120deg, rgba(148, 197, 255, 0.15), transparent 60%));
       }
 
       [data-showcase-theme] .aurora-section::after {
-        background: radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.25), transparent 45%);
+        background: var(--showcase-section-after, radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.25), transparent 45%));
       }
 
       [data-showcase-theme] .aurora-section__inner {
@@ -778,11 +801,14 @@
       [data-showcase-theme] .aurora-section__title {
         font-size: clamp(1.8rem, 2.8vw, 2.6rem);
         font-weight: 600;
+        letter-spacing: var(--showcase-letter-spacing-title, -0.01em);
+        text-transform: var(--showcase-text-transform-title, none);
       }
 
       [data-showcase-theme] .aurora-body-text {
         font-size: 1rem;
         color: var(--showcase-text-soft, #e2e8f0);
+        letter-spacing: var(--showcase-letter-spacing-body, 0em);
         line-height: 1.7;
       }
 
@@ -805,10 +831,10 @@
       [data-showcase-theme] .aurora-card {
         background: var(--showcase-surface-card, rgba(255, 255, 255, 0.82));
         border: 1px solid var(--showcase-border-light, rgba(148, 197, 255, 0.4));
-        border-radius: 28px;
+        border-radius: var(--showcase-radius-card, 28px);
         padding: 1.6rem 1.8rem;
         color: var(--showcase-ink-strong, rgba(15, 23, 42, 0.88));
-        box-shadow: 0 28px 70px rgba(15, 23, 42, 0.15);
+        box-shadow: var(--showcase-card-shadow, 0 28px 70px rgba(15, 23, 42, 0.15));
         min-width: 240px;
       }
 
@@ -828,10 +854,10 @@
         align-items: center;
         gap: 0.5rem;
         padding: 0.5rem 0.9rem;
-        border-radius: 999px;
+        border-radius: var(--showcase-radius-chip, 999px);
         font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
+        text-transform: var(--showcase-text-transform-chip, uppercase);
+        letter-spacing: var(--showcase-letter-spacing-chip, 0.2em);
         font-weight: 600;
       }
 
@@ -859,7 +885,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        border-radius: 32px;
+        border-radius: var(--showcase-radius-hero, 32px);
         background: var(--showcase-hero-gradient, linear-gradient(135deg, #000000 0%, #090d15 45%, #0b1f2c 100%));
         opacity: 0.95;
         z-index: 0;
@@ -869,7 +895,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        border-radius: 32px;
+        border-radius: var(--showcase-radius-hero, 32px);
         background: radial-gradient(circle at 20% 30%, var(--showcase-hero-glow-primary, rgba(148, 197, 255, 0.15)), transparent 70%),
           radial-gradient(circle at 80% 80%, var(--showcase-hero-glow-secondary, rgba(14, 165, 233, 0.18)), transparent 65%);
         opacity: 0.8;
@@ -885,7 +911,9 @@
 
       [data-showcase-theme] .aurora-hero__title {
         font-size: clamp(2.4rem, 5vw, 3.7rem);
-        font-weight: 700;
+        font-weight: var(--showcase-title-weight, 700);
+        letter-spacing: var(--showcase-letter-spacing-title, -0.01em);
+        text-transform: var(--showcase-text-transform-title, none);
         background: var(--showcase-title-gradient, linear-gradient(120deg, #93c5fd, #c084fc, #0ea5e9));
         -webkit-background-clip: text;
         color: transparent;
@@ -2160,7 +2188,7 @@
     </div>
 
     <footer class="showcase-footer">
-      <p>Project Navigator · Version v1.0.232 · <a href="./mentions-legales.html">Mentions légales</a></p>
+      <p>Project Navigator · Version v1.0.233 · <a href="./mentions-legales.html">Mentions légales</a></p>
     </footer>
 
     <script>
@@ -2268,6 +2296,29 @@
         '--showcase-highlight-soft': 'rgba(148, 197, 255, 0.7)',
         '--showcase-shadow-soft': 'rgba(14, 165, 233, 0.32)',
         '--showcase-shadow-strong': 'rgba(14, 165, 233, 0.4)',
+        '--showcase-radius-panel': '30px',
+        '--showcase-radius-card': '28px',
+        '--showcase-radius-chip': '999px',
+        '--showcase-radius-button': '999px',
+        '--showcase-radius-input': '18px',
+        '--showcase-radius-hero': '32px',
+        '--showcase-radius-section': '42px',
+        '--showcase-letter-spacing-title': '-0.01em',
+        '--showcase-letter-spacing-body': '0em',
+        '--showcase-letter-spacing-eyebrow': '0.4em',
+        '--showcase-letter-spacing-button': '0.38em',
+        '--showcase-letter-spacing-label': '0.3em',
+        '--showcase-letter-spacing-chip': '0.2em',
+        '--showcase-text-transform-title': 'none',
+        '--showcase-text-transform-eyebrow': 'uppercase',
+        '--showcase-text-transform-button': 'uppercase',
+        '--showcase-text-transform-label': 'uppercase',
+        '--showcase-text-transform-chip': 'uppercase',
+        '--showcase-title-weight': '700',
+        '--showcase-card-shadow': '0 28px 70px rgba(15, 23, 42, 0.15)',
+        '--showcase-panel-shadow': '0 32px 80px rgba(15, 23, 42, 0.35)',
+        '--showcase-section-before': 'linear-gradient(120deg, rgba(148, 197, 255, 0.15), transparent 60%)',
+        '--showcase-section-after': 'radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.25), transparent 45%)',
         '--showcase-ink-strong': '#0f172a',
         '--showcase-ink-soft': '#1e293b',
         '--showcase-ink-muted': '#475569',
@@ -2316,18 +2367,34 @@
       const themes = [
         {
           id: 'aurora-neon',
-          name: 'Aurora Néon',
-          trend: 'Cinematic glow',
-          description: 'Nébuleuse bleue, reflets volumétriques et contrastes froids pour un effet immersive sci-fi.',
-          preview: 'linear-gradient(135deg, #020617, #1d4ed8 45%, #0ea5e9)',
-          vars: baseThemeVars
+          name: 'Console Astrale',
+          trend: 'Command deck',
+          description: 'Interface de pilotage futuriste, lueurs concentrées et typographie technique.',
+          preview: 'linear-gradient(135deg, #020617, #2563eb 45%, #22d3ee)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-font': "'Sora', 'Inter', sans-serif",
+            '--showcase-letter-spacing-title': '0.02em',
+            '--showcase-letter-spacing-button': '0.32em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-title-weight': '600',
+            '--showcase-radius-panel': '22px',
+            '--showcase-radius-card': '20px',
+            '--showcase-radius-button': '14px',
+            '--showcase-radius-input': '14px',
+            '--showcase-radius-section': '32px',
+            '--showcase-card-shadow': '0 24px 40px rgba(2, 8, 23, 0.45)',
+            '--showcase-panel-shadow': '0 24px 60px rgba(2, 8, 23, 0.55)',
+            '--showcase-section-before': 'radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.35), transparent 50%)',
+            '--showcase-section-after': 'radial-gradient(circle at 90% 0%, rgba(14, 165, 233, 0.35), transparent 45%)'
+          }
         },
         {
           id: 'verre-pastel',
-          name: 'Verre Pastel',
-          trend: 'Glassmorphism',
-          description: 'Dégradés laiteux, transparences douces et reflets prismes pour un rendu premium et aérien.',
-          preview: 'linear-gradient(135deg, #f0f9ff, #d8b4fe 45%, #38bdf8)',
+          name: 'Atelier Brume',
+          trend: 'Soft gallery',
+          description: 'Aplats diaphanes, typographie élégante et volumes vitrine façon showroom.',
+          preview: 'linear-gradient(135deg, #ffffff, #f3e8ff 45%, #bae6fd)',
           vars: {
             ...baseThemeVars,
             '--showcase-bg-start': '#f8fafc',
@@ -2337,7 +2404,7 @@
             '--showcase-footer-bg': '#e0e7ff',
             '--showcase-footer-text': '#475569',
             '--showcase-footer-link': '#1d4ed8',
-            '--showcase-font': "'Inter', 'Segoe UI', sans-serif",
+            '--showcase-font': "'Cormorant Garamond', 'Times New Roman', serif",
             '--showcase-glow-primary': 'rgba(125, 211, 252, 0.35)',
             '--showcase-glow-secondary': 'rgba(192, 132, 252, 0.35)',
             '--showcase-text-strong': '#0f172a',
@@ -2362,7 +2429,7 @@
             '--showcase-surface-panel': 'rgba(255, 255, 255, 0.75)',
             '--showcase-surface-panel-soft': 'rgba(255, 255, 255, 0.9)',
             '--showcase-border-light': 'rgba(59, 130, 246, 0.35)',
-            '--showcase-title-gradient': 'linear-gradient(120deg, #6366f1, #0ea5e9, #a855f7)',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #4338ca, #0ea5e9, #a855f7)',
             '--showcase-title-shadow': 'rgba(37, 99, 235, 0.25)',
             '--showcase-title-sheen': 'rgba(255, 255, 255, 0.8)',
             '--showcase-cta-gradient': 'linear-gradient(120deg, #6366f1, #22d3ee)',
@@ -2393,14 +2460,28 @@
             '--showcase-status-alert-text': '#9f1239',
             '--showcase-accent-soft': 'rgba(59, 130, 246, 0.7)',
             '--showcase-accent-strong': 'rgba(79, 70, 229, 0.85)',
-            '--showcase-accent-muted': 'rgba(147, 51, 234, 0.7)'
+            '--showcase-accent-muted': 'rgba(147, 51, 234, 0.7)',
+            '--showcase-letter-spacing-title': '0.01em',
+            '--showcase-letter-spacing-body': '0.01em',
+            '--showcase-letter-spacing-button': '0.12em',
+            '--showcase-text-transform-button': 'none',
+            '--showcase-text-transform-eyebrow': 'none',
+            '--showcase-radius-panel': '36px',
+            '--showcase-radius-card': '32px',
+            '--showcase-radius-hero': '36px',
+            '--showcase-radius-section': '40px',
+            '--showcase-title-weight': '500',
+            '--showcase-card-shadow': '0 20px 60px rgba(99, 102, 241, 0.15)',
+            '--showcase-panel-shadow': '0 24px 60px rgba(148, 163, 184, 0.25)',
+            '--showcase-section-before': 'linear-gradient(130deg, rgba(255, 255, 255, 0.9), rgba(165, 180, 252, 0.25))',
+            '--showcase-section-after': 'radial-gradient(circle at 80% 20%, rgba(192, 132, 252, 0.2), transparent 60%)'
           }
         },
         {
           id: 'brutal-mono',
-          name: 'Brutal Mono',
-          trend: 'Neo-brutalism',
-          description: 'Typographie massive, contrastes francs et surfaces anguleuses pour un impact direct.',
+          name: 'Béton Presse',
+          trend: 'Brutalist print',
+          description: 'Grilles rigides, capitales massives et aplats anguleux façon édition brute.',
           preview: 'linear-gradient(135deg, #0f0f0f, #f97316 45%, #facc15)',
           vars: {
             ...baseThemeVars,
@@ -2411,7 +2492,7 @@
             '--showcase-footer-bg': '#111111',
             '--showcase-footer-text': '#d4d4d4',
             '--showcase-footer-link': '#fbbf24',
-            '--showcase-font': "'Space Grotesk', 'Inter', sans-serif",
+            '--showcase-font': "'IBM Plex Mono', 'Space Mono', monospace",
             '--showcase-glow-primary': 'rgba(249, 115, 22, 0.3)',
             '--showcase-glow-secondary': 'rgba(250, 204, 21, 0.3)',
             '--showcase-text-strong': '#fafafa',
@@ -2467,15 +2548,34 @@
             '--showcase-status-alert-text': '#7f1d1d',
             '--showcase-accent-soft': 'rgba(251, 191, 36, 0.85)',
             '--showcase-accent-strong': 'rgba(249, 115, 22, 0.9)',
-            '--showcase-accent-muted': 'rgba(250, 204, 21, 0.7)'
+            '--showcase-accent-muted': 'rgba(250, 204, 21, 0.7)',
+            '--showcase-letter-spacing-title': '0.08em',
+            '--showcase-letter-spacing-button': '0.2em',
+            '--showcase-letter-spacing-chip': '0.28em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-text-transform-chip': 'uppercase',
+            '--showcase-title-weight': '800',
+            '--showcase-radius-panel': '6px',
+            '--showcase-radius-card': '6px',
+            '--showcase-radius-button': '4px',
+            '--showcase-radius-input': '4px',
+            '--showcase-radius-hero': '6px',
+            '--showcase-radius-section': '8px',
+            '--showcase-card-shadow': '8px 8px 0 rgba(250, 204, 21, 0.9)',
+            '--showcase-panel-shadow': '12px 12px 0 rgba(249, 115, 22, 0.8)',
+            '--showcase-section-before':
+              'repeating-linear-gradient(135deg, rgba(250, 204, 21, 0.18) 0 8px, rgba(0, 0, 0, 0) 8px 16px)',
+            '--showcase-section-after':
+              'repeating-linear-gradient(90deg, rgba(249, 115, 22, 0.25) 0 2px, rgba(0, 0, 0, 0) 2px 10px)'
           }
         },
         {
           id: 'swiss-minimal',
-          name: 'Swiss Minimal',
-          trend: 'Swiss design',
-          description: 'Grilles rigoureuses, blancs éclatants et typographie sobre pour une lisibilité maximale.',
-          preview: 'linear-gradient(135deg, #ffffff, #e2e8f0 45%, #94a3b8)',
+          name: 'Grille Helvetica',
+          trend: 'Swiss editorial',
+          description: 'Blancs rigoureux, filets précis et hiérarchie typographique sans fioritures.',
+          preview: 'linear-gradient(135deg, #ffffff, #e2e8f0 45%, #0f172a)',
           vars: {
             ...baseThemeVars,
             '--showcase-bg-start': '#f8fafc',
@@ -2541,15 +2641,33 @@
             '--showcase-status-alert-text': '#7f1d1d',
             '--showcase-accent-soft': 'rgba(37, 99, 235, 0.6)',
             '--showcase-accent-strong': 'rgba(15, 23, 42, 0.9)',
-            '--showcase-accent-muted': 'rgba(71, 85, 105, 0.7)'
+            '--showcase-accent-muted': 'rgba(71, 85, 105, 0.7)',
+            '--showcase-letter-spacing-title': '0.04em',
+            '--showcase-letter-spacing-button': '0.28em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-text-transform-chip': 'uppercase',
+            '--showcase-title-weight': '500',
+            '--showcase-radius-panel': '0px',
+            '--showcase-radius-card': '0px',
+            '--showcase-radius-button': '0px',
+            '--showcase-radius-input': '0px',
+            '--showcase-radius-hero': '0px',
+            '--showcase-radius-section': '0px',
+            '--showcase-radius-chip': '0px',
+            '--showcase-card-shadow': 'none',
+            '--showcase-panel-shadow': 'none',
+            '--showcase-section-before': 'linear-gradient(0deg, rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.05))',
+            '--showcase-section-after':
+              'repeating-linear-gradient(90deg, rgba(15, 23, 42, 0.08) 0 1px, rgba(0, 0, 0, 0) 1px 12px)'
           }
         },
         {
           id: 'y2k-candy',
-          name: 'Y2K Candy',
-          trend: 'Y2K futurism',
-          description: 'Gels acidulés, chromes brillants et gradients bubblegum façon 2000s.',
-          preview: 'linear-gradient(135deg, #ff4fd8, #7c3aed 45%, #22d3ee)',
+          name: 'Candy Chrome',
+          trend: 'Bubble pop 2000s',
+          description: 'Plastiques translucides, reflets chrome et boutons jouets ultra-lisses.',
+          preview: 'linear-gradient(135deg, #ff8fda, #7c3aed 45%, #22d3ee)',
           vars: {
             ...baseThemeVars,
             '--showcase-bg-start': '#1b0033',
@@ -2559,7 +2677,7 @@
             '--showcase-footer-bg': '#1c0a2e',
             '--showcase-footer-text': '#f5d0fe',
             '--showcase-footer-link': '#f0abfc',
-            '--showcase-font': "'Poppins', 'Inter', sans-serif",
+            '--showcase-font': "'Varela Round', 'Inter', sans-serif",
             '--showcase-glow-primary': 'rgba(236, 72, 153, 0.35)',
             '--showcase-glow-secondary': 'rgba(34, 211, 238, 0.35)',
             '--showcase-text-strong': '#fdf4ff',
@@ -2615,15 +2733,32 @@
             '--showcase-status-alert-text': '#881337',
             '--showcase-accent-soft': 'rgba(236, 72, 153, 0.8)',
             '--showcase-accent-strong': 'rgba(34, 211, 238, 0.85)',
-            '--showcase-accent-muted': 'rgba(192, 132, 252, 0.75)'
+            '--showcase-accent-muted': 'rgba(192, 132, 252, 0.75)',
+            '--showcase-letter-spacing-title': '0.02em',
+            '--showcase-letter-spacing-button': '0.18em',
+            '--showcase-letter-spacing-chip': '0.18em',
+            '--showcase-text-transform-button': 'none',
+            '--showcase-text-transform-chip': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '34px',
+            '--showcase-radius-card': '30px',
+            '--showcase-radius-button': '999px',
+            '--showcase-radius-input': '20px',
+            '--showcase-radius-hero': '40px',
+            '--showcase-radius-section': '40px',
+            '--showcase-card-shadow': '0 18px 40px rgba(236, 72, 153, 0.35)',
+            '--showcase-panel-shadow': '0 24px 70px rgba(59, 15, 102, 0.5)',
+            '--showcase-section-before':
+              'radial-gradient(circle at 20% 20%, rgba(236, 72, 153, 0.3), transparent 55%), radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.25), transparent 45%)',
+            '--showcase-section-after': 'linear-gradient(120deg, rgba(255, 255, 255, 0.2), transparent 60%)'
           }
         },
         {
           id: 'neo-nature',
-          name: 'Neo Nature',
-          trend: 'Biophilic design',
-          description: 'Verts végétaux, matières organiques et halos doux pour un design apaisant.',
-          preview: 'linear-gradient(135deg, #052e1b, #16a34a 45%, #84cc16)',
+          name: 'Herbier Organique',
+          trend: 'Eco retreat',
+          description: 'Matières naturelles, sérifs doux et respirations organiques apaisantes.',
+          preview: 'linear-gradient(135deg, #052e1b, #16a34a 45%, #a3e635)',
           vars: {
             ...baseThemeVars,
             '--showcase-bg-start': '#041b12',
@@ -2633,7 +2768,7 @@
             '--showcase-footer-bg': '#052e1b',
             '--showcase-footer-text': '#bbf7d0',
             '--showcase-footer-link': '#86efac',
-            '--showcase-font': "'Manrope', 'Inter', sans-serif",
+            '--showcase-font': "'Merriweather', 'Georgia', serif",
             '--showcase-glow-primary': 'rgba(34, 197, 94, 0.28)',
             '--showcase-glow-secondary': 'rgba(132, 204, 22, 0.25)',
             '--showcase-text-strong': '#f0fdf4',
@@ -2689,14 +2824,30 @@
             '--showcase-status-alert-text': '#7f1d1d',
             '--showcase-accent-soft': 'rgba(134, 239, 172, 0.85)',
             '--showcase-accent-strong': 'rgba(34, 197, 94, 0.9)',
-            '--showcase-accent-muted': 'rgba(132, 204, 22, 0.7)'
+            '--showcase-accent-muted': 'rgba(132, 204, 22, 0.7)',
+            '--showcase-letter-spacing-title': '0.01em',
+            '--showcase-letter-spacing-body': '0.01em',
+            '--showcase-letter-spacing-button': '0.2em',
+            '--showcase-text-transform-title': 'none',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-title-weight': '600',
+            '--showcase-radius-panel': '26px',
+            '--showcase-radius-card': '24px',
+            '--showcase-radius-button': '18px',
+            '--showcase-radius-input': '16px',
+            '--showcase-radius-hero': '28px',
+            '--showcase-radius-section': '30px',
+            '--showcase-card-shadow': '0 18px 50px rgba(20, 83, 45, 0.35)',
+            '--showcase-panel-shadow': '0 20px 60px rgba(4, 27, 18, 0.5)',
+            '--showcase-section-before': 'radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.25), transparent 55%)',
+            '--showcase-section-after': 'radial-gradient(circle at 80% 80%, rgba(132, 204, 22, 0.2), transparent 55%)'
           }
         },
         {
           id: 'cyber-magenta',
-          name: 'Cyber Magenta',
-          trend: 'Cyberpunk',
-          description: 'Noirs profonds, magentas électriques et effets laser pour un univers nocturne.',
+          name: 'Arcade Néon',
+          trend: 'Synthwave grid',
+          description: 'Grilles rétro, magentas acides et micro-typo technique façon arcade.',
           preview: 'linear-gradient(135deg, #120015, #ff2d95 45%, #22d3ee)',
           vars: {
             ...baseThemeVars,
@@ -2707,7 +2858,7 @@
             '--showcase-footer-bg': '#14001f',
             '--showcase-footer-text': '#f5e1ff',
             '--showcase-footer-link': '#ff2d95',
-            '--showcase-font': "'Rajdhani', 'Inter', sans-serif",
+            '--showcase-font': "'Share Tech Mono', 'Rajdhani', monospace",
             '--showcase-glow-primary': 'rgba(255, 45, 149, 0.35)',
             '--showcase-glow-secondary': 'rgba(34, 211, 238, 0.35)',
             '--showcase-text-strong': '#fdf4ff',
@@ -2763,14 +2914,33 @@
             '--showcase-status-alert-text': '#881337',
             '--showcase-accent-soft': 'rgba(255, 45, 149, 0.8)',
             '--showcase-accent-strong': 'rgba(34, 211, 238, 0.85)',
-            '--showcase-accent-muted': 'rgba(168, 85, 247, 0.75)'
+            '--showcase-accent-muted': 'rgba(168, 85, 247, 0.75)',
+            '--showcase-letter-spacing-title': '0.12em',
+            '--showcase-letter-spacing-button': '0.28em',
+            '--showcase-letter-spacing-chip': '0.3em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-text-transform-chip': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '8px',
+            '--showcase-radius-card': '6px',
+            '--showcase-radius-button': '2px',
+            '--showcase-radius-input': '4px',
+            '--showcase-radius-hero': '10px',
+            '--showcase-radius-section': '16px',
+            '--showcase-radius-chip': '2px',
+            '--showcase-card-shadow': '0 0 0 1px rgba(255, 45, 149, 0.6), 0 12px 30px rgba(0, 0, 0, 0.55)',
+            '--showcase-panel-shadow': '0 0 0 1px rgba(34, 211, 238, 0.45), 0 18px 45px rgba(0, 0, 0, 0.6)',
+            '--showcase-section-before':
+              'repeating-linear-gradient(90deg, rgba(255, 45, 149, 0.15) 0 1px, rgba(0, 0, 0, 0) 1px 16px), repeating-linear-gradient(180deg, rgba(34, 211, 238, 0.12) 0 1px, rgba(0, 0, 0, 0) 1px 16px)',
+            '--showcase-section-after': 'radial-gradient(circle at 70% 20%, rgba(255, 45, 149, 0.3), transparent 45%)'
           }
         },
         {
           id: 'editorial-luxe',
-          name: 'Editorial Luxe',
-          trend: 'Luxury editorial',
-          description: 'Ivoire, noir profond et accents dorés pour un rendu magazine haut de gamme.',
+          name: 'Maison Éditoriale',
+          trend: 'Luxury print',
+          description: 'Colonnes fines, sérifs nobles et dorures discrètes façon magazine prestige.',
           preview: 'linear-gradient(135deg, #f7f2ec, #c9a227 45%, #0f172a)',
           vars: {
             ...baseThemeVars,
@@ -2837,14 +3007,31 @@
             '--showcase-status-alert-text': '#7f1d1d',
             '--showcase-accent-soft': 'rgba(201, 162, 39, 0.7)',
             '--showcase-accent-strong': 'rgba(183, 121, 31, 0.9)',
-            '--showcase-accent-muted': 'rgba(31, 41, 55, 0.7)'
+            '--showcase-accent-muted': 'rgba(31, 41, 55, 0.7)',
+            '--showcase-letter-spacing-title': '0.08em',
+            '--showcase-letter-spacing-button': '0.26em',
+            '--showcase-letter-spacing-chip': '0.22em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-text-transform-chip': 'uppercase',
+            '--showcase-title-weight': '600',
+            '--showcase-radius-panel': '20px',
+            '--showcase-radius-card': '18px',
+            '--showcase-radius-button': '6px',
+            '--showcase-radius-input': '8px',
+            '--showcase-radius-hero': '24px',
+            '--showcase-radius-section': '24px',
+            '--showcase-card-shadow': '0 18px 40px rgba(31, 41, 55, 0.2)',
+            '--showcase-panel-shadow': '0 24px 50px rgba(31, 41, 55, 0.25)',
+            '--showcase-section-before': 'linear-gradient(140deg, rgba(201, 162, 39, 0.18), rgba(255, 255, 255, 0.85))',
+            '--showcase-section-after': 'linear-gradient(90deg, rgba(31, 41, 55, 0.08), rgba(31, 41, 55, 0.02))'
           }
         },
         {
           id: 'neo-memphis',
-          name: 'Neo Memphis',
-          trend: 'Memphis revival',
-          description: 'Couleurs franches, formes pop et énergie rétro-futuriste inspirée des années 80.',
+          name: 'Memphis Parade',
+          trend: 'Studio pop',
+          description: 'Formes ludiques, pastilles XXL et rythme graphique exubérant.',
           preview: 'linear-gradient(135deg, #f97316, #06b6d4 45%, #a855f7)',
           vars: {
             ...baseThemeVars,
@@ -2855,7 +3042,7 @@
             '--showcase-footer-bg': '#fde68a',
             '--showcase-footer-text': '#1f2937',
             '--showcase-footer-link': '#dc2626',
-            '--showcase-font': "'Figtree', 'Inter', sans-serif",
+            '--showcase-font': "'Baloo 2', 'Figtree', sans-serif",
             '--showcase-glow-primary': 'rgba(249, 115, 22, 0.35)',
             '--showcase-glow-secondary': 'rgba(6, 182, 212, 0.35)',
             '--showcase-text-strong': '#1f2937',
@@ -2911,14 +3098,32 @@
             '--showcase-status-alert-text': '#7f1d1d',
             '--showcase-accent-soft': 'rgba(249, 115, 22, 0.7)',
             '--showcase-accent-strong': 'rgba(6, 182, 212, 0.8)',
-            '--showcase-accent-muted': 'rgba(168, 85, 247, 0.7)'
+            '--showcase-accent-muted': 'rgba(168, 85, 247, 0.7)',
+            '--showcase-letter-spacing-title': '0.06em',
+            '--showcase-letter-spacing-button': '0.24em',
+            '--showcase-letter-spacing-chip': '0.24em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-text-transform-chip': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '40px',
+            '--showcase-radius-card': '36px',
+            '--showcase-radius-button': '999px',
+            '--showcase-radius-input': '18px',
+            '--showcase-radius-hero': '44px',
+            '--showcase-radius-section': '46px',
+            '--showcase-card-shadow': '0 18px 0 rgba(15, 23, 42, 0.12), 0 30px 60px rgba(6, 182, 212, 0.25)',
+            '--showcase-panel-shadow': '0 24px 70px rgba(249, 115, 22, 0.25)',
+            '--showcase-section-before':
+              'repeating-linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0 10px, rgba(6, 182, 212, 0.2) 10px 20px)',
+            '--showcase-section-after': 'radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.25), transparent 55%)'
           }
         },
         {
           id: 'solar-bloom',
-          name: 'Solar Bloom',
-          trend: 'Solarpunk',
-          description: 'Jaunes solaires et bleus océans pour une vision optimiste et durable.',
+          name: 'Marché Solaire',
+          trend: 'Sunny marketplace',
+          description: 'Bandes lumineuses, arrondis chaleureux et énergie de place publique.',
           preview: 'linear-gradient(135deg, #fef08a, #38bdf8 45%, #0f766e)',
           vars: {
             ...baseThemeVars,
@@ -2929,7 +3134,7 @@
             '--showcase-footer-bg': '#e0f2fe',
             '--showcase-footer-text': '#0f172a',
             '--showcase-footer-link': '#0f766e',
-            '--showcase-font': "'Urbanist', 'Inter', sans-serif",
+            '--showcase-font': "'Nunito', 'Inter', sans-serif",
             '--showcase-glow-primary': 'rgba(250, 204, 21, 0.35)',
             '--showcase-glow-secondary': 'rgba(14, 165, 233, 0.3)',
             '--showcase-text-strong': '#0f172a',
@@ -2985,7 +3190,23 @@
             '--showcase-status-alert-text': '#7f1d1d',
             '--showcase-accent-soft': 'rgba(14, 165, 233, 0.6)',
             '--showcase-accent-strong': 'rgba(234, 179, 8, 0.9)',
-            '--showcase-accent-muted': 'rgba(16, 185, 129, 0.7)'
+            '--showcase-accent-muted': 'rgba(16, 185, 129, 0.7)',
+            '--showcase-letter-spacing-title': '0.02em',
+            '--showcase-letter-spacing-body': '0.01em',
+            '--showcase-letter-spacing-button': '0.2em',
+            '--showcase-text-transform-title': 'none',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '24px',
+            '--showcase-radius-card': '22px',
+            '--showcase-radius-button': '14px',
+            '--showcase-radius-input': '14px',
+            '--showcase-radius-hero': '28px',
+            '--showcase-radius-section': '28px',
+            '--showcase-card-shadow': '0 18px 40px rgba(234, 179, 8, 0.2)',
+            '--showcase-panel-shadow': '0 20px 50px rgba(14, 165, 233, 0.2)',
+            '--showcase-section-before': 'linear-gradient(120deg, rgba(234, 179, 8, 0.25), transparent 55%)',
+            '--showcase-section-after': 'radial-gradient(circle at 20% 10%, rgba(14, 165, 233, 0.2), transparent 50%)'
           }
         }
       ];
