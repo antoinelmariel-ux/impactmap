@@ -345,8 +345,48 @@
         --showcase-panel-shadow: 0 32px 80px rgba(15, 23, 42, 0.35);
         --showcase-section-before: linear-gradient(120deg, rgba(148, 197, 255, 0.15), transparent 60%);
         --showcase-section-after: radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.25), transparent 45%);
+        --showcase-section-before-opacity: 0.2;
+        --showcase-section-after-opacity: 0.18;
+        --showcase-section-before-blend: screen;
+        --showcase-section-after-blend: screen;
+        --showcase-section-before-filter: none;
+        --showcase-section-after-filter: none;
+        --showcase-section-before-anim: aurora-drift 22s ease-in-out infinite;
+        --showcase-section-after-anim: aurora-drift 26s ease-in-out infinite reverse;
+        --showcase-shell-overlay: radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.08), transparent 40%),
+          linear-gradient(120deg, rgba(148, 197, 255, 0.08), transparent 55%);
+        --showcase-shell-overlay-opacity: 0.75;
+        --showcase-shell-overlay-blend: screen;
+        --showcase-shell-overlay-filter: none;
+        --showcase-shell-overlay-anim: aurora-sheen 18s ease-in-out infinite;
+        --showcase-button-sheen: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+        --showcase-button-sheen-opacity: 0.2;
+        --showcase-button-sheen-hover-opacity: 0.6;
+        --showcase-button-sheen-anim: aurora-sheen 4.5s linear infinite;
+        --showcase-button-sheen-blend: screen;
         font-family: var(--showcase-font, 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
         color: var(--showcase-text-strong, #f8fafc);
+      }
+
+      @keyframes aurora-drift {
+        0% {
+          transform: translate3d(-2%, -2%, 0);
+        }
+        50% {
+          transform: translate3d(2%, 1%, 0);
+        }
+        100% {
+          transform: translate3d(-2%, -2%, 0);
+        }
+      }
+
+      @keyframes aurora-sheen {
+        0% {
+          transform: translateX(-120%) rotate(12deg);
+        }
+        100% {
+          transform: translateX(120%) rotate(12deg);
+        }
       }
 
       [data-showcase-theme] .aurora-shell {
@@ -365,6 +405,18 @@
         padding-bottom: 6rem;
       }
 
+      [data-showcase-theme] .aurora-shell::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: var(--showcase-shell-overlay, linear-gradient(120deg, rgba(148, 197, 255, 0.1), transparent 60%));
+        opacity: var(--showcase-shell-overlay-opacity, 0.7);
+        mix-blend-mode: var(--showcase-shell-overlay-blend, screen);
+        filter: var(--showcase-shell-overlay-filter, none);
+        animation: var(--showcase-shell-overlay-anim, none);
+      }
+
       [data-showcase-theme] .aurora-shell::after {
         content: '';
         position: absolute;
@@ -372,6 +424,7 @@
         pointer-events: none;
         background: radial-gradient(circle at 50% 10%, var(--showcase-glow-secondary, rgba(90, 180, 255, 0.08)), transparent 65%);
         mix-blend-mode: screen;
+        animation: aurora-drift 28s ease-in-out infinite;
       }
 
       [data-showcase-theme] .aurora-sections {
@@ -415,6 +468,24 @@
         transition: filter 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
         backdrop-filter: blur(16px);
         color: var(--showcase-text-soft, var(--showcase-text-soft, #e2e8f0));
+        position: relative;
+        overflow: hidden;
+      }
+
+      [data-showcase-theme] .aurora-button::before {
+        content: '';
+        position: absolute;
+        inset: -150% auto -150% -80%;
+        width: 60%;
+        background: var(--showcase-button-sheen, linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.65), transparent));
+        opacity: var(--showcase-button-sheen-opacity, 0);
+        mix-blend-mode: var(--showcase-button-sheen-blend, screen);
+        animation: var(--showcase-button-sheen-anim, none);
+        pointer-events: none;
+      }
+
+      [data-showcase-theme] .aurora-button:hover::before {
+        opacity: var(--showcase-button-sheen-hover-opacity, 0.5);
       }
 
       [data-showcase-theme] .aurora-button__icon {
@@ -755,16 +826,24 @@
         position: absolute;
         inset: 0;
         border-radius: var(--showcase-radius-section, 42px);
-        opacity: 0.15;
+        opacity: var(--showcase-section-before-opacity, 0.15);
         pointer-events: none;
       }
 
       [data-showcase-theme] .aurora-section::before {
         background: var(--showcase-section-before, linear-gradient(120deg, rgba(148, 197, 255, 0.15), transparent 60%));
+        opacity: var(--showcase-section-before-opacity, 0.15);
+        mix-blend-mode: var(--showcase-section-before-blend, screen);
+        filter: var(--showcase-section-before-filter, none);
+        animation: var(--showcase-section-before-anim, none);
       }
 
       [data-showcase-theme] .aurora-section::after {
         background: var(--showcase-section-after, radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.25), transparent 45%));
+        opacity: var(--showcase-section-after-opacity, 0.15);
+        mix-blend-mode: var(--showcase-section-after-blend, screen);
+        filter: var(--showcase-section-after-filter, none);
+        animation: var(--showcase-section-after-anim, none);
       }
 
       [data-showcase-theme] .aurora-section__inner {
@@ -2188,7 +2267,7 @@
     </div>
 
     <footer class="showcase-footer">
-      <p>Project Navigator · Version v1.0.233 · <a href="./mentions-legales.html">Mentions légales</a></p>
+      <p>Project Navigator · Version v1.0.234 · <a href="./mentions-legales.html">Mentions légales</a></p>
     </footer>
 
     <script>
@@ -2319,6 +2398,24 @@
         '--showcase-panel-shadow': '0 32px 80px rgba(15, 23, 42, 0.35)',
         '--showcase-section-before': 'linear-gradient(120deg, rgba(148, 197, 255, 0.15), transparent 60%)',
         '--showcase-section-after': 'radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.25), transparent 45%)',
+        '--showcase-section-before-opacity': '0.2',
+        '--showcase-section-after-opacity': '0.18',
+        '--showcase-section-before-blend': 'screen',
+        '--showcase-section-after-blend': 'screen',
+        '--showcase-section-before-filter': 'none',
+        '--showcase-section-after-filter': 'none',
+        '--showcase-section-before-anim': 'aurora-drift 22s ease-in-out infinite',
+        '--showcase-section-after-anim': 'aurora-drift 26s ease-in-out infinite reverse',
+        '--showcase-shell-overlay': 'radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.08), transparent 40%), linear-gradient(120deg, rgba(148, 197, 255, 0.08), transparent 55%)',
+        '--showcase-shell-overlay-opacity': '0.75',
+        '--showcase-shell-overlay-blend': 'screen',
+        '--showcase-shell-overlay-filter': 'none',
+        '--showcase-shell-overlay-anim': 'aurora-sheen 18s ease-in-out infinite',
+        '--showcase-button-sheen': 'linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.65), transparent)',
+        '--showcase-button-sheen-opacity': '0.2',
+        '--showcase-button-sheen-hover-opacity': '0.6',
+        '--showcase-button-sheen-anim': 'aurora-sheen 4.5s linear infinite',
+        '--showcase-button-sheen-blend': 'screen',
         '--showcase-ink-strong': '#0f172a',
         '--showcase-ink-soft': '#1e293b',
         '--showcase-ink-muted': '#475569',
@@ -3207,6 +3304,353 @@
             '--showcase-panel-shadow': '0 20px 50px rgba(14, 165, 233, 0.2)',
             '--showcase-section-before': 'linear-gradient(120deg, rgba(234, 179, 8, 0.25), transparent 55%)',
             '--showcase-section-after': 'radial-gradient(circle at 20% 10%, rgba(14, 165, 233, 0.2), transparent 50%)'
+          }
+        },
+        {
+          id: 'noir-couture',
+          name: 'Noir Couture',
+          trend: 'Maison haute',
+          description: 'Monochrome couture, contrastes tranchés et lumière dorée ultra maîtrisée.',
+          preview: 'linear-gradient(135deg, #0b0b0d, #f5f5f2 50%, #bfa06a)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#0b0b0d',
+            '--showcase-bg-mid': '#111113',
+            '--showcase-bg-end': '#0b0b0d',
+            '--showcase-page-bg': '#0b0b0d',
+            '--showcase-footer-bg': '#141416',
+            '--showcase-footer-text': 'rgba(245, 245, 242, 0.7)',
+            '--showcase-footer-link': '#f5f5f2',
+            '--showcase-font': "'Bodoni Moda', 'Playfair Display', serif",
+            '--showcase-glow-primary': 'rgba(191, 160, 106, 0.12)',
+            '--showcase-glow-secondary': 'rgba(255, 255, 255, 0.08)',
+            '--showcase-text-strong': '#f5f5f2',
+            '--showcase-text-soft': 'rgba(245, 245, 242, 0.75)',
+            '--showcase-accent-primary': '#bfa06a',
+            '--showcase-accent-secondary': '#f5f5f2',
+            '--showcase-surface': 'rgba(20, 20, 22, 0.78)',
+            '--showcase-border-strong': 'rgba(191, 160, 106, 0.35)',
+            '--showcase-border-soft': 'rgba(245, 245, 242, 0.15)',
+            '--showcase-highlight-strong': 'rgba(191, 160, 106, 0.8)',
+            '--showcase-highlight-soft': 'rgba(245, 245, 242, 0.55)',
+            '--showcase-shadow-soft': 'rgba(0, 0, 0, 0.4)',
+            '--showcase-shadow-strong': 'rgba(0, 0, 0, 0.6)',
+            '--showcase-ink-strong': '#0b0b0d',
+            '--showcase-ink-soft': '#1f1f24',
+            '--showcase-ink-muted': '#4b4b52',
+            '--showcase-ink-subtle': '#7c7c86',
+            '--showcase-surface-light': '#f5f5f2',
+            '--showcase-surface-light-alt': '#eceae7',
+            '--showcase-surface-card': 'rgba(20, 20, 22, 0.92)',
+            '--showcase-surface-card-soft': 'rgba(20, 20, 22, 0.82)',
+            '--showcase-surface-panel': 'rgba(12, 12, 14, 0.92)',
+            '--showcase-surface-panel-soft': 'rgba(20, 20, 22, 0.95)',
+            '--showcase-border-light': 'rgba(191, 160, 106, 0.22)',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #f5f5f2, #bfa06a)',
+            '--showcase-title-shadow': 'rgba(0, 0, 0, 0.45)',
+            '--showcase-title-sheen': 'rgba(255, 255, 255, 0.35)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #bfa06a, #f5f5f2)',
+            '--showcase-cta-text': '#0b0b0d',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #0b0b0d 0%, #141416 55%, #1a1a1d 100%)',
+            '--showcase-hero-glow-primary': 'rgba(191, 160, 106, 0.18)',
+            '--showcase-hero-glow-secondary': 'rgba(255, 255, 255, 0.08)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(191, 160, 106, 0.2), rgba(11, 11, 13, 0.6))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #111113 0%, #1f1f24 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #1a1a1d 0%, #bfa06a 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #f5f5f2 0%, #eceae7 100%)',
+            '--showcase-panel-soft-surface': 'linear-gradient(140deg, rgba(191, 160, 106, 0.2), rgba(11, 11, 13, 0.6))',
+            '--showcase-panel-card-gradient': 'linear-gradient(150deg, rgba(22, 22, 26, 0.95), rgba(191, 160, 106, 0.12))',
+            '--showcase-impact-gradient': 'linear-gradient(140deg, rgba(191, 160, 106, 0.18), rgba(0, 0, 0, 0.8), rgba(11, 11, 13, 0.85))',
+            '--showcase-impact-card-gradient':
+              'radial-gradient(circle at 12% 18%, rgba(191, 160, 106, 0.3), transparent 55%), radial-gradient(circle at 88% 82%, rgba(245, 245, 242, 0.08), transparent 52%), linear-gradient(155deg, rgba(0, 0, 0, 0.7), rgba(191, 160, 106, 0.35))',
+            '--showcase-impact-vision-gradient':
+              'radial-gradient(circle at 16% 22%, rgba(191, 160, 106, 0.25), transparent 50%), linear-gradient(150deg, rgba(245, 245, 242, 0.1), rgba(0, 0, 0, 0.6))',
+            '--showcase-risk-halo-gradient': 'radial-gradient(circle at 30% 30%, rgba(245, 245, 242, 0.2), rgba(11, 11, 13, 0.9))',
+            '--showcase-risk-note': 'rgba(245, 245, 242, 0.85)',
+            '--showcase-partner-bg': 'rgba(191, 160, 106, 0.12)',
+            '--showcase-status-ok-gradient': 'linear-gradient(135deg, #f5f5f2 0%, #e7e3dc 100%)',
+            '--showcase-status-warn-gradient': 'linear-gradient(135deg, #f7efe2 0%, #e8d7c1 100%)',
+            '--showcase-status-alert-gradient': 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)',
+            '--showcase-status-alert-strong-gradient': 'linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%)',
+            '--showcase-status-ok-text': '#1f1f24',
+            '--showcase-status-warn-text': '#4b3a22',
+            '--showcase-status-alert-text': '#7f1d1d',
+            '--showcase-accent-soft': 'rgba(191, 160, 106, 0.75)',
+            '--showcase-accent-strong': 'rgba(245, 245, 242, 0.9)',
+            '--showcase-accent-muted': 'rgba(191, 160, 106, 0.55)',
+            '--showcase-letter-spacing-title': '0.18em',
+            '--showcase-letter-spacing-button': '0.32em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-title-weight': '500',
+            '--showcase-radius-panel': '12px',
+            '--showcase-radius-card': '10px',
+            '--showcase-radius-button': '2px',
+            '--showcase-radius-input': '6px',
+            '--showcase-radius-hero': '18px',
+            '--showcase-radius-section': '20px',
+            '--showcase-card-shadow': '0 22px 60px rgba(0, 0, 0, 0.65)',
+            '--showcase-panel-shadow': '0 28px 70px rgba(0, 0, 0, 0.7)',
+            '--showcase-section-before':
+              'repeating-linear-gradient(115deg, rgba(191, 160, 106, 0.16) 0 1px, rgba(0, 0, 0, 0) 1px 16px)',
+            '--showcase-section-after': 'radial-gradient(circle at 80% 15%, rgba(245, 245, 242, 0.12), transparent 60%)',
+            '--showcase-section-before-opacity': '0.25',
+            '--showcase-section-after-opacity': '0.2',
+            '--showcase-section-before-blend': 'normal',
+            '--showcase-section-after-blend': 'normal',
+            '--showcase-section-before-anim': 'none',
+            '--showcase-section-after-anim': 'none',
+            '--showcase-shell-overlay':
+              'radial-gradient(circle at 80% 20%, rgba(191, 160, 106, 0.12), transparent 45%), linear-gradient(120deg, rgba(255, 255, 255, 0.06), transparent 60%)',
+            '--showcase-shell-overlay-opacity': '0.45',
+            '--showcase-shell-overlay-blend': 'screen',
+            '--showcase-shell-overlay-anim': 'aurora-drift 30s ease-in-out infinite',
+            '--showcase-button-sheen-opacity': '0.12',
+            '--showcase-button-sheen-hover-opacity': '0.35'
+          }
+        },
+        {
+          id: 'sport-pulse',
+          name: 'Sprint Pulse',
+          trend: 'Performance lab',
+          description: 'Géométrie vive, contrastes sportifs premium et rythmes de vitesse.',
+          preview: 'linear-gradient(135deg, #0f172a, #f43f5e 45%, #f8fafc)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#0b0b14',
+            '--showcase-bg-mid': '#111827',
+            '--showcase-bg-end': '#0b0b14',
+            '--showcase-page-bg': '#0b0b14',
+            '--showcase-footer-bg': '#111827',
+            '--showcase-footer-text': 'rgba(248, 250, 252, 0.7)',
+            '--showcase-footer-link': '#f43f5e',
+            '--showcase-font': "'Bebas Neue', 'Oswald', sans-serif",
+            '--showcase-glow-primary': 'rgba(244, 63, 94, 0.35)',
+            '--showcase-glow-secondary': 'rgba(14, 165, 233, 0.25)',
+            '--showcase-text-strong': '#f8fafc',
+            '--showcase-text-soft': 'rgba(248, 250, 252, 0.7)',
+            '--showcase-accent-primary': '#f43f5e',
+            '--showcase-accent-secondary': '#0ea5e9',
+            '--showcase-surface': 'rgba(15, 23, 42, 0.8)',
+            '--showcase-border-strong': 'rgba(244, 63, 94, 0.45)',
+            '--showcase-border-soft': 'rgba(14, 165, 233, 0.25)',
+            '--showcase-highlight-strong': 'rgba(244, 63, 94, 0.9)',
+            '--showcase-highlight-soft': 'rgba(14, 165, 233, 0.6)',
+            '--showcase-shadow-soft': 'rgba(244, 63, 94, 0.25)',
+            '--showcase-shadow-strong': 'rgba(15, 23, 42, 0.65)',
+            '--showcase-ink-strong': '#0f172a',
+            '--showcase-ink-soft': '#111827',
+            '--showcase-ink-muted': '#1f2937',
+            '--showcase-ink-subtle': '#334155',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #f43f5e, #38bdf8)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #f43f5e, #38bdf8)',
+            '--showcase-cta-text': '#0b0b14',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #0b0b14 0%, #111827 45%, #020617 100%)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(244, 63, 94, 0.3), rgba(15, 23, 42, 0.55))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #0f172a 0%, #111827 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #f43f5e 0%, #0ea5e9 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+            '--showcase-impact-gradient': 'linear-gradient(140deg, rgba(244, 63, 94, 0.2), rgba(14, 165, 233, 0.25), rgba(2, 6, 23, 0.9))',
+            '--showcase-impact-card-gradient':
+              'radial-gradient(circle at 15% 20%, rgba(244, 63, 94, 0.45), transparent 50%), radial-gradient(circle at 85% 80%, rgba(14, 165, 233, 0.35), transparent 52%), linear-gradient(155deg, rgba(15, 23, 42, 0.8), rgba(244, 63, 94, 0.5))',
+            '--showcase-impact-vision-gradient':
+              'radial-gradient(circle at 18% 24%, rgba(244, 63, 94, 0.4), transparent 50%), linear-gradient(150deg, rgba(56, 189, 248, 0.2), rgba(2, 6, 23, 0.8))',
+            '--showcase-risk-halo-gradient': 'radial-gradient(circle at 30% 30%, rgba(244, 63, 94, 0.5), rgba(2, 6, 23, 0.85))',
+            '--showcase-risk-note': 'rgba(248, 250, 252, 0.92)',
+            '--showcase-partner-bg': 'rgba(244, 63, 94, 0.15)',
+            '--showcase-accent-soft': 'rgba(56, 189, 248, 0.7)',
+            '--showcase-accent-strong': 'rgba(244, 63, 94, 0.9)',
+            '--showcase-accent-muted': 'rgba(244, 63, 94, 0.6)',
+            '--showcase-letter-spacing-title': '0.1em',
+            '--showcase-letter-spacing-button': '0.28em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '14px',
+            '--showcase-radius-card': '10px',
+            '--showcase-radius-button': '999px',
+            '--showcase-radius-input': '12px',
+            '--showcase-radius-hero': '22px',
+            '--showcase-radius-section': '24px',
+            '--showcase-card-shadow': '0 24px 50px rgba(2, 6, 23, 0.6)',
+            '--showcase-panel-shadow': '0 28px 80px rgba(244, 63, 94, 0.25)',
+            '--showcase-section-before':
+              'repeating-linear-gradient(110deg, rgba(244, 63, 94, 0.2) 0 12px, rgba(0, 0, 0, 0) 12px 24px)',
+            '--showcase-section-after':
+              'repeating-linear-gradient(70deg, rgba(56, 189, 248, 0.18) 0 10px, rgba(0, 0, 0, 0) 10px 22px)',
+            '--showcase-section-before-opacity': '0.35',
+            '--showcase-section-after-opacity': '0.25',
+            '--showcase-section-before-anim': 'aurora-drift 14s ease-in-out infinite',
+            '--showcase-section-after-anim': 'aurora-drift 18s ease-in-out infinite reverse',
+            '--showcase-shell-overlay':
+              'radial-gradient(circle at 20% 20%, rgba(244, 63, 94, 0.2), transparent 45%), linear-gradient(120deg, rgba(56, 189, 248, 0.18), transparent 55%)',
+            '--showcase-shell-overlay-opacity': '0.65',
+            '--showcase-shell-overlay-blend': 'screen',
+            '--showcase-shell-overlay-anim': 'aurora-drift 22s ease-in-out infinite',
+            '--showcase-button-sheen-opacity': '0.3',
+            '--showcase-button-sheen-hover-opacity': '0.75'
+          }
+        },
+        {
+          id: 'nordic-market',
+          name: 'Nordic Market',
+          trend: 'Scandi retail',
+          description: 'Bleu primaire, jaune solaire et clarté utilitaire façon design scandinave.',
+          preview: 'linear-gradient(135deg, #0f4c81, #facc15 50%, #f8fafc)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#f8fafc',
+            '--showcase-bg-mid': '#fef3c7',
+            '--showcase-bg-end': '#e0f2fe',
+            '--showcase-page-bg': '#f8fafc',
+            '--showcase-footer-bg': '#0f4c81',
+            '--showcase-footer-text': '#f8fafc',
+            '--showcase-footer-link': '#facc15',
+            '--showcase-font': "'Figtree', 'Inter', sans-serif",
+            '--showcase-glow-primary': 'rgba(15, 76, 129, 0.2)',
+            '--showcase-glow-secondary': 'rgba(250, 204, 21, 0.2)',
+            '--showcase-text-strong': '#0f172a',
+            '--showcase-text-soft': '#1e293b',
+            '--showcase-accent-primary': '#0f4c81',
+            '--showcase-accent-secondary': '#facc15',
+            '--showcase-surface': 'rgba(255, 255, 255, 0.95)',
+            '--showcase-border-strong': 'rgba(15, 76, 129, 0.25)',
+            '--showcase-border-soft': 'rgba(250, 204, 21, 0.3)',
+            '--showcase-highlight-strong': 'rgba(15, 76, 129, 0.75)',
+            '--showcase-highlight-soft': 'rgba(250, 204, 21, 0.6)',
+            '--showcase-shadow-soft': 'rgba(15, 76, 129, 0.12)',
+            '--showcase-shadow-strong': 'rgba(15, 76, 129, 0.18)',
+            '--showcase-ink-strong': '#0f172a',
+            '--showcase-ink-soft': '#1e293b',
+            '--showcase-ink-muted': '#475569',
+            '--showcase-ink-subtle': '#94a3b8',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #0f4c81, #facc15)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #0f4c81, #facc15)',
+            '--showcase-cta-text': '#ffffff',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #fef3c7 100%)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(15, 76, 129, 0.15), rgba(255, 255, 255, 0.85))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #ffffff 0%, #fef3c7 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #0f4c81 0%, #facc15 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+            '--showcase-impact-gradient': 'linear-gradient(140deg, rgba(15, 76, 129, 0.12), rgba(250, 204, 21, 0.2), rgba(255, 255, 255, 0.95))',
+            '--showcase-impact-card-gradient':
+              'radial-gradient(circle at 12% 18%, rgba(15, 76, 129, 0.2), transparent 55%), radial-gradient(circle at 88% 82%, rgba(250, 204, 21, 0.3), transparent 52%), linear-gradient(155deg, rgba(15, 76, 129, 0.2), rgba(255, 255, 255, 0.9))',
+            '--showcase-impact-vision-gradient':
+              'radial-gradient(circle at 16% 22%, rgba(15, 76, 129, 0.2), transparent 50%), linear-gradient(150deg, rgba(250, 204, 21, 0.2), rgba(255, 255, 255, 0.85))',
+            '--showcase-risk-halo-gradient': 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(224, 242, 254, 0.7))',
+            '--showcase-risk-note': 'rgba(15, 23, 42, 0.7)',
+            '--showcase-partner-bg': 'rgba(250, 204, 21, 0.2)',
+            '--showcase-accent-soft': 'rgba(15, 76, 129, 0.6)',
+            '--showcase-accent-strong': 'rgba(250, 204, 21, 0.9)',
+            '--showcase-accent-muted': 'rgba(15, 76, 129, 0.4)',
+            '--showcase-letter-spacing-title': '0.04em',
+            '--showcase-letter-spacing-button': '0.18em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '18px',
+            '--showcase-radius-card': '16px',
+            '--showcase-radius-button': '10px',
+            '--showcase-radius-input': '12px',
+            '--showcase-radius-hero': '24px',
+            '--showcase-radius-section': '26px',
+            '--showcase-card-shadow': '0 18px 40px rgba(15, 76, 129, 0.15)',
+            '--showcase-panel-shadow': '0 20px 45px rgba(15, 76, 129, 0.18)',
+            '--showcase-section-before':
+              'radial-gradient(circle at 15% 20%, rgba(15, 76, 129, 0.18), transparent 50%), radial-gradient(circle at 85% 70%, rgba(250, 204, 21, 0.2), transparent 55%)',
+            '--showcase-section-after':
+              'repeating-linear-gradient(90deg, rgba(15, 76, 129, 0.12) 0 1px, rgba(0, 0, 0, 0) 1px 14px)',
+            '--showcase-section-before-opacity': '0.2',
+            '--showcase-section-after-opacity': '0.3',
+            '--showcase-section-before-blend': 'normal',
+            '--showcase-section-after-blend': 'multiply',
+            '--showcase-section-before-anim': 'none',
+            '--showcase-section-after-anim': 'none',
+            '--showcase-shell-overlay':
+              'radial-gradient(circle at 10% 12%, rgba(250, 204, 21, 0.2), transparent 40%), repeating-linear-gradient(0deg, rgba(15, 76, 129, 0.08) 0 1px, rgba(0, 0, 0, 0) 1px 18px)',
+            '--showcase-shell-overlay-opacity': '0.5',
+            '--showcase-shell-overlay-blend': 'multiply',
+            '--showcase-shell-overlay-anim': 'none',
+            '--showcase-button-sheen-opacity': '0.18',
+            '--showcase-button-sheen-hover-opacity': '0.4'
+          }
+        },
+        {
+          id: 'stream-studio',
+          name: 'Streamline Studio',
+          trend: 'Streaming night',
+          description: 'Néons contrôlés, noirs profonds et vibrations digitales nocturnes.',
+          preview: 'linear-gradient(135deg, #050505, #22c55e 45%, #16a34a)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#050505',
+            '--showcase-bg-mid': '#0b0f0d',
+            '--showcase-bg-end': '#020202',
+            '--showcase-page-bg': '#050505',
+            '--showcase-footer-bg': '#0b0f0d',
+            '--showcase-footer-text': 'rgba(240, 253, 244, 0.7)',
+            '--showcase-footer-link': '#22c55e',
+            '--showcase-font': "'Space Grotesk', 'Inter', sans-serif",
+            '--showcase-glow-primary': 'rgba(34, 197, 94, 0.3)',
+            '--showcase-glow-secondary': 'rgba(56, 189, 248, 0.2)',
+            '--showcase-text-strong': '#f0fdf4',
+            '--showcase-text-soft': 'rgba(240, 253, 244, 0.7)',
+            '--showcase-accent-primary': '#22c55e',
+            '--showcase-accent-secondary': '#38bdf8',
+            '--showcase-surface': 'rgba(9, 15, 12, 0.82)',
+            '--showcase-border-strong': 'rgba(34, 197, 94, 0.35)',
+            '--showcase-border-soft': 'rgba(56, 189, 248, 0.25)',
+            '--showcase-highlight-strong': 'rgba(34, 197, 94, 0.8)',
+            '--showcase-highlight-soft': 'rgba(56, 189, 248, 0.6)',
+            '--showcase-shadow-soft': 'rgba(34, 197, 94, 0.25)',
+            '--showcase-shadow-strong': 'rgba(2, 6, 23, 0.7)',
+            '--showcase-ink-strong': '#f0fdf4',
+            '--showcase-ink-soft': '#bbf7d0',
+            '--showcase-ink-muted': '#86efac',
+            '--showcase-ink-subtle': '#4ade80',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #22c55e, #38bdf8)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #22c55e, #38bdf8)',
+            '--showcase-cta-text': '#052e16',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #050505 0%, #0b0f0d 45%, #0f172a 100%)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(34, 197, 94, 0.25), rgba(2, 6, 23, 0.6))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #0b0f0d 0%, #0f172a 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #22c55e 0%, #38bdf8 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+            '--showcase-impact-gradient': 'linear-gradient(140deg, rgba(34, 197, 94, 0.2), rgba(56, 189, 248, 0.2), rgba(2, 6, 23, 0.85))',
+            '--showcase-impact-card-gradient':
+              'radial-gradient(circle at 12% 18%, rgba(34, 197, 94, 0.4), transparent 55%), radial-gradient(circle at 88% 82%, rgba(56, 189, 248, 0.3), transparent 52%), linear-gradient(155deg, rgba(2, 6, 23, 0.85), rgba(34, 197, 94, 0.45))',
+            '--showcase-impact-vision-gradient':
+              'radial-gradient(circle at 16% 22%, rgba(34, 197, 94, 0.3), transparent 50%), linear-gradient(150deg, rgba(56, 189, 248, 0.2), rgba(2, 6, 23, 0.8))',
+            '--showcase-risk-halo-gradient': 'radial-gradient(circle at 30% 30%, rgba(34, 197, 94, 0.45), rgba(2, 6, 23, 0.85))',
+            '--showcase-risk-note': 'rgba(240, 253, 244, 0.9)',
+            '--showcase-partner-bg': 'rgba(34, 197, 94, 0.15)',
+            '--showcase-accent-soft': 'rgba(56, 189, 248, 0.65)',
+            '--showcase-accent-strong': 'rgba(34, 197, 94, 0.9)',
+            '--showcase-accent-muted': 'rgba(34, 197, 94, 0.55)',
+            '--showcase-letter-spacing-title': '0.06em',
+            '--showcase-letter-spacing-button': '0.22em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '16px',
+            '--showcase-radius-card': '14px',
+            '--showcase-radius-button': '999px',
+            '--showcase-radius-input': '12px',
+            '--showcase-radius-hero': '26px',
+            '--showcase-radius-section': '28px',
+            '--showcase-card-shadow': '0 24px 60px rgba(2, 6, 23, 0.6)',
+            '--showcase-panel-shadow': '0 26px 70px rgba(34, 197, 94, 0.25)',
+            '--showcase-section-before':
+              'radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.25), transparent 55%), radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.2), transparent 55%)',
+            '--showcase-section-after':
+              'repeating-linear-gradient(140deg, rgba(34, 197, 94, 0.18) 0 8px, rgba(0, 0, 0, 0) 8px 16px)',
+            '--showcase-section-before-opacity': '0.25',
+            '--showcase-section-after-opacity': '0.2',
+            '--showcase-section-before-anim': 'aurora-drift 20s ease-in-out infinite',
+            '--showcase-section-after-anim': 'aurora-drift 24s ease-in-out infinite reverse',
+            '--showcase-shell-overlay':
+              'radial-gradient(circle at 12% 12%, rgba(34, 197, 94, 0.25), transparent 45%), radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.2), transparent 50%)',
+            '--showcase-shell-overlay-opacity': '0.65',
+            '--showcase-shell-overlay-blend': 'screen',
+            '--showcase-shell-overlay-anim': 'aurora-drift 26s ease-in-out infinite',
+            '--showcase-button-sheen-opacity': '0.28',
+            '--showcase-button-sheen-hover-opacity': '0.7'
           }
         }
       ];
