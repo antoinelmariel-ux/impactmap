@@ -364,8 +364,55 @@
         --showcase-button-sheen-hover-opacity: 0.6;
         --showcase-button-sheen-anim: aurora-sheen 4.5s linear infinite;
         --showcase-button-sheen-blend: screen;
-        font-family: var(--showcase-font, 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
-        color: var(--showcase-text-strong, #f8fafc);
+        --ui-font: var(--showcase-font, 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+        --ui-text-strong: var(--showcase-text-strong, #f8fafc);
+        --ui-text-soft: var(--showcase-text-soft, #e2e8f0);
+        --ui-border-soft: var(--showcase-border-soft, rgba(148, 163, 184, 0.28));
+        --ui-border-strong: var(--showcase-border-strong, rgba(148, 163, 184, 0.25));
+        --ui-surface: var(--showcase-surface, rgba(8, 13, 22, 0.78));
+        --ui-surface-card: var(--showcase-surface-card, rgba(255, 255, 255, 0.82));
+        --ui-surface-card-soft: var(--showcase-surface-card-soft, rgba(255, 255, 255, 0.72));
+        --ui-ink-strong: var(--showcase-ink-strong, rgba(15, 23, 42, 0.88));
+        --ui-ink-soft: var(--showcase-ink-soft, rgba(15, 23, 42, 0.75));
+        --ui-ink-muted: var(--showcase-ink-muted, rgba(71, 85, 105, 0.85));
+        --ui-button-text: var(--showcase-text-soft, #e2e8f0);
+        --ui-button-letter-spacing: var(--showcase-letter-spacing-button, 0.38em);
+        --ui-button-transform: var(--showcase-text-transform-button, uppercase);
+        --ui-button-radius: var(--showcase-radius-button, 999px);
+        --ui-button-ghost-bg: rgba(148, 163, 184, 0.12);
+        --ui-button-ghost-border: var(--showcase-border-soft, rgba(148, 163, 184, 0.28));
+        --ui-button-primary-bg: linear-gradient(120deg, var(--showcase-accent-primary, #2563eb), var(--showcase-accent-secondary, #06b6d4));
+        --ui-button-primary-shadow: 0 18px 36px var(--showcase-shadow-soft, rgba(14, 165, 233, 0.32));
+        --ui-button-outline-bg: rgba(15, 23, 42, 0.35);
+        --ui-button-outline-border: var(--showcase-border-soft, rgba(148, 163, 184, 0.4));
+        --ui-button-outline-hover-border: var(--showcase-highlight-strong, rgba(96, 165, 250, 0.8));
+        --ui-button-outline-hover-text: var(--showcase-highlight-strong, #bfdbfe);
+        --ui-input-bg: var(--showcase-surface-panel, rgba(15, 23, 42, 0.55));
+        --ui-input-border: var(--showcase-border-soft, rgba(148, 163, 184, 0.28));
+        --ui-input-text: var(--showcase-text-strong, #f8fafc);
+        --ui-input-radius: var(--showcase-radius-input, 18px);
+        --ui-input-focus-border: var(--showcase-highlight-strong, rgba(96, 165, 250, 0.8));
+        --ui-input-focus-ring: rgba(96, 165, 250, 0.25);
+        --ui-card-bg: var(--showcase-surface-card, rgba(255, 255, 255, 0.82));
+        --ui-card-border: var(--showcase-border-light, rgba(148, 197, 255, 0.4));
+        --ui-card-radius: var(--showcase-radius-card, 28px);
+        --ui-card-text: var(--showcase-ink-strong, rgba(15, 23, 42, 0.88));
+        --ui-card-shadow: var(--showcase-card-shadow, 0 28px 70px rgba(15, 23, 42, 0.15));
+        --ui-chip-radius: var(--showcase-radius-chip, 999px);
+        --ui-chip-letter-spacing: var(--showcase-letter-spacing-chip, 0.2em);
+        --ui-chip-transform: var(--showcase-text-transform-chip, uppercase);
+        --ui-chip-tone-bg: var(--showcase-highlight-soft, rgba(219, 234, 254, 0.72));
+        --ui-chip-tone-border: var(--showcase-border-light, rgba(96, 165, 250, 0.35));
+        --ui-chip-tone-text: var(--showcase-ink-soft, rgba(15, 23, 42, 0.82));
+        --ui-chip-ghost-bg: var(--showcase-surface-card-soft, rgba(255, 255, 255, 0.72));
+        --ui-chip-ghost-border: var(--showcase-border-soft, rgba(148, 163, 184, 0.45));
+        --ui-chip-ghost-text: var(--showcase-ink-soft, rgba(15, 23, 42, 0.75));
+        --ui-cta-bg: var(--showcase-cta-gradient, linear-gradient(120deg, #1e3a8a, #0f766e));
+        --ui-cta-text: var(--showcase-cta-text, #ecfeff);
+        --ui-cta-border: var(--showcase-border-light, rgba(148, 197, 255, 0.32));
+        --ui-cta-shadow: rgba(37, 99, 235, 0.3);
+        font-family: var(--ui-font, 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+        color: var(--ui-text-strong, #f8fafc);
       }
 
       @keyframes aurora-drift {
@@ -454,25 +501,25 @@
         box-shadow: 0 32px 72px var(--showcase-shadow-strong, rgba(14, 165, 233, 0.4));
       }
 
-      [data-showcase-theme] .aurora-button {
+      [data-showcase-theme] :is(.aurora-button, [data-ui="button"]) {
         display: inline-flex;
         align-items: center;
         gap: 0.45rem;
         font-size: 0.7rem;
-        letter-spacing: var(--showcase-letter-spacing-button, 0.38em);
-        text-transform: var(--showcase-text-transform-button, uppercase);
+        letter-spacing: var(--ui-button-letter-spacing, 0.38em);
+        text-transform: var(--ui-button-transform, uppercase);
         font-weight: 600;
         padding: 0.65rem 1.4rem;
-        border-radius: var(--showcase-radius-button, 999px);
+        border-radius: var(--ui-button-radius, 999px);
         border: 1px solid transparent;
         transition: filter 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
         backdrop-filter: blur(16px);
-        color: var(--showcase-text-soft, var(--showcase-text-soft, #e2e8f0));
+        color: var(--ui-button-text, var(--showcase-text-soft, #e2e8f0));
         position: relative;
         overflow: hidden;
       }
 
-      [data-showcase-theme] .aurora-button::before {
+      [data-showcase-theme] :is(.aurora-button, [data-ui="button"])::before {
         content: '';
         position: absolute;
         inset: -150% auto -150% -80%;
@@ -484,18 +531,18 @@
         pointer-events: none;
       }
 
-      [data-showcase-theme] .aurora-button:hover::before {
+      [data-showcase-theme] :is(.aurora-button, [data-ui="button"]):hover::before {
         opacity: var(--showcase-button-sheen-hover-opacity, 0.5);
       }
 
-      [data-showcase-theme] .aurora-button__icon {
+      [data-showcase-theme] :is(.aurora-button__icon, [data-ui="button-icon"]) {
         width: 1rem;
         height: 1rem;
       }
 
       [data-showcase-theme] .aurora-button--ghost {
-        background: rgba(148, 163, 184, 0.12);
-        border-color: var(--showcase-border-soft, rgba(148, 163, 184, 0.28));
+        background: var(--ui-button-ghost-bg, rgba(148, 163, 184, 0.12));
+        border-color: var(--ui-button-ghost-border, rgba(148, 163, 184, 0.28));
       }
 
       [data-showcase-theme] .aurora-button--ghost:hover {
@@ -503,8 +550,8 @@
       }
 
       [data-showcase-theme] .aurora-button--primary {
-        background: linear-gradient(120deg, var(--showcase-accent-primary, var(--showcase-accent-primary, #2563eb)), var(--showcase-accent-secondary, var(--showcase-accent-secondary, #06b6d4)));
-        box-shadow: 0 18px 36px var(--showcase-shadow-soft, var(--showcase-shadow-soft, rgba(14, 165, 233, 0.32)));
+        background: var(--ui-button-primary-bg, linear-gradient(120deg, var(--showcase-accent-primary, #2563eb), var(--showcase-accent-secondary, #06b6d4)));
+        box-shadow: var(--ui-button-primary-shadow, 0 18px 36px rgba(14, 165, 233, 0.32));
       }
 
       [data-showcase-theme] .aurora-button--primary:hover {
@@ -512,13 +559,13 @@
       }
 
       [data-showcase-theme] .aurora-button--outline {
-        border-color: var(--showcase-border-soft, rgba(148, 163, 184, 0.4));
-        background: rgba(15, 23, 42, 0.35);
+        border-color: var(--ui-button-outline-border, rgba(148, 163, 184, 0.4));
+        background: var(--ui-button-outline-bg, rgba(15, 23, 42, 0.35));
       }
 
       [data-showcase-theme] .aurora-button--outline:hover {
-        border-color: var(--showcase-highlight-strong, rgba(96, 165, 250, 0.8));
-        color: var(--showcase-highlight-strong, #bfdbfe);
+        border-color: var(--ui-button-outline-hover-border, rgba(96, 165, 250, 0.8));
+        color: var(--ui-button-outline-hover-text, #bfdbfe);
       }
 
       [data-showcase-theme] .aurora-edit-panel {
@@ -611,20 +658,20 @@
         color: var(--showcase-text-soft, rgba(203, 213, 225, 0.9));
       }
 
-      [data-showcase-theme] .aurora-form-control {
-        background: rgba(15, 23, 42, 0.55);
-        border: 1px solid var(--showcase-border-soft, rgba(148, 163, 184, 0.28));
-        border-radius: var(--showcase-radius-input, 18px);
+      [data-showcase-theme] :is(.aurora-form-control, [data-ui="input"], [data-ui="select"], [data-ui="textarea"]) {
+        background: var(--ui-input-bg, rgba(15, 23, 42, 0.55));
+        border: 1px solid var(--ui-input-border, rgba(148, 163, 184, 0.28));
+        border-radius: var(--ui-input-radius, 18px);
         padding: 0.75rem 0.9rem;
-        color: var(--showcase-text-strong, #f8fafc);
+        color: var(--ui-input-text, #f8fafc);
         font-size: 0.9rem;
         transition: border-color 0.2s ease, box-shadow 0.2s ease;
       }
 
-      [data-showcase-theme] .aurora-form-control:focus {
+      [data-showcase-theme] :is(.aurora-form-control, [data-ui="input"], [data-ui="select"], [data-ui="textarea"]):focus {
         outline: none;
-        border-color: var(--showcase-highlight-strong, rgba(96, 165, 250, 0.8));
-        box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25);
+        border-color: var(--ui-input-focus-border, rgba(96, 165, 250, 0.8));
+        box-shadow: 0 0 0 2px var(--ui-input-focus-ring, rgba(96, 165, 250, 0.25));
       }
 
       [data-showcase-theme] .aurora-form-control--textarea {
@@ -907,36 +954,36 @@
         color: var(--showcase-ink-soft, rgba(30, 41, 59, 0.82));
       }
 
-      [data-showcase-theme] .aurora-card {
-        background: var(--showcase-surface-card, rgba(255, 255, 255, 0.82));
-        border: 1px solid var(--showcase-border-light, rgba(148, 197, 255, 0.4));
-        border-radius: var(--showcase-radius-card, 28px);
+      [data-showcase-theme] :is(.aurora-card, [data-ui="card"]) {
+        background: var(--ui-card-bg, rgba(255, 255, 255, 0.82));
+        border: 1px solid var(--ui-card-border, rgba(148, 197, 255, 0.4));
+        border-radius: var(--ui-card-radius, 28px);
         padding: 1.6rem 1.8rem;
-        color: var(--showcase-ink-strong, rgba(15, 23, 42, 0.88));
-        box-shadow: var(--showcase-card-shadow, 0 28px 70px rgba(15, 23, 42, 0.15));
+        color: var(--ui-card-text, rgba(15, 23, 42, 0.88));
+        box-shadow: var(--ui-card-shadow, 0 28px 70px rgba(15, 23, 42, 0.15));
         min-width: 240px;
       }
 
       [data-showcase-theme] .aurora-card__metric {
         font-size: clamp(1.6rem, 3vw, 2.3rem);
         font-weight: 600;
-        color: var(--showcase-ink-strong, rgba(15, 23, 42, 0.9));
+        color: var(--ui-ink-strong, rgba(15, 23, 42, 0.9));
       }
 
       [data-showcase-theme] .aurora-card__caption {
         font-size: 0.9rem;
-        color: var(--showcase-ink-muted, rgba(71, 85, 105, 0.85));
+        color: var(--ui-ink-muted, rgba(71, 85, 105, 0.85));
       }
 
-      [data-showcase-theme] .aurora-chip {
+      [data-showcase-theme] :is(.aurora-chip, [data-ui="chip"]) {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
         padding: 0.5rem 0.9rem;
-        border-radius: var(--showcase-radius-chip, 999px);
+        border-radius: var(--ui-chip-radius, 999px);
         font-size: 0.7rem;
-        text-transform: var(--showcase-text-transform-chip, uppercase);
-        letter-spacing: var(--showcase-letter-spacing-chip, 0.2em);
+        text-transform: var(--ui-chip-transform, uppercase);
+        letter-spacing: var(--ui-chip-letter-spacing, 0.2em);
         font-weight: 600;
       }
 
@@ -949,15 +996,15 @@
       }
 
       [data-showcase-theme] .aurora-chip--tone {
-        background: var(--showcase-highlight-soft, rgba(219, 234, 254, 0.72));
-        border: 1px solid var(--showcase-border-light, rgba(96, 165, 250, 0.35));
-        color: var(--showcase-ink-soft, rgba(15, 23, 42, 0.82));
+        background: var(--ui-chip-tone-bg, rgba(219, 234, 254, 0.72));
+        border: 1px solid var(--ui-chip-tone-border, rgba(96, 165, 250, 0.35));
+        color: var(--ui-chip-tone-text, rgba(15, 23, 42, 0.82));
       }
 
       [data-showcase-theme] .aurora-chip--ghost {
-        background: var(--showcase-surface-card-soft, rgba(255, 255, 255, 0.72));
-        border: 1px solid var(--showcase-border-soft, rgba(148, 163, 184, 0.45));
-        color: var(--showcase-ink-soft, rgba(15, 23, 42, 0.75));
+        background: var(--ui-chip-ghost-bg, rgba(255, 255, 255, 0.72));
+        border: 1px solid var(--ui-chip-ghost-border, rgba(148, 163, 184, 0.45));
+        color: var(--ui-chip-ghost-text, rgba(15, 23, 42, 0.75));
       }
 
       [data-showcase-theme] .aurora-hero::before {
@@ -1022,24 +1069,24 @@
         flex-wrap: wrap;
       }
 
-      [data-showcase-theme] .aurora-cta {
+      [data-showcase-theme] :is(.aurora-cta, [data-ui="cta"]) {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         padding: 0.85rem 1.7rem;
         border-radius: 999px;
-        background: var(--showcase-cta-gradient, linear-gradient(120deg, #1e3a8a, #0f766e));
-        color: var(--showcase-cta-text, #ecfeff);
+        background: var(--ui-cta-bg, linear-gradient(120deg, #1e3a8a, #0f766e));
+        color: var(--ui-cta-text, #ecfeff);
         font-weight: 600;
         font-size: 0.95rem;
         text-decoration: none;
-        border: 1px solid var(--showcase-border-light, rgba(148, 197, 255, 0.32));
+        border: 1px solid var(--ui-cta-border, rgba(148, 197, 255, 0.32));
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
-      [data-showcase-theme] .aurora-cta:hover {
+      [data-showcase-theme] :is(.aurora-cta, [data-ui="cta"]):hover {
         transform: translateY(-2px);
-        box-shadow: 0 16px 32px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 16px 32px var(--ui-cta-shadow, rgba(37, 99, 235, 0.3));
       }
 
       [data-showcase-theme] .aurora-hero__highlights {
@@ -1999,7 +2046,7 @@
             <div class="aurora-theme-panel">
               <div class="aurora-theme-header">
                 <p class="aurora-eyebrow">Laboratoire créatif</p>
-                <h2 class="aurora-theme-title">10 univers pour un même récit</h2>
+                <h2 class="aurora-theme-title">14 univers pour un même récit</h2>
                 <p class="aurora-theme-description">
                   Changez instantanément l'ambiance de la vitrine. Chaque thème incarne un courant webdesign actuel pour explorer des directions visuelles radicalement différentes.
                 </p>
@@ -2007,7 +2054,7 @@
               <div class="aurora-theme-control">
                 <label class="aurora-theme-meta">
                   <span class="aurora-theme-meta__label">Choisir un thème</span>
-                  <select class="aurora-theme-select" data-theme-select></select>
+                  <select class="aurora-theme-select" data-theme-select data-ui="select"></select>
                 </label>
                 <div class="aurora-theme-meta">
                   <span class="aurora-theme-meta__label">Courant</span>
@@ -2032,7 +2079,7 @@
                 Du don à la vie : découvrez comment chaque goutte de plasma devient un traitement vital
               </p>
               <div class="aurora-cta-group">
-                <button type="button" class="aurora-cta">Découvrir le projet</button>
+                <button type="button" class="aurora-cta" data-ui="cta">Découvrir le projet</button>
               </div>
             </div>
             <div class="aurora-hero__highlights">
@@ -2122,7 +2169,7 @@
                 <p class="aurora-eyebrow">Notre impact</p>
                 <h2 class="aurora-section__title">Délivrer le maximum de valeur</h2>
               </div>
-              <div class="aurora-card aurora-card--budget">
+              <div class="aurora-card aurora-card--budget" data-ui="card">
                 <p class="aurora-eyebrow">Budget estimé</p>
                 <p class="aurora-card__metric" data-budget-value>30 K€ K€</p>
                 <p class="aurora-card__caption">Prévision globale sur 12 mois.</p>
@@ -2216,7 +2263,7 @@
                 <p class="aurora-eyebrow">Feuille de route</p>
                 <h2 class="aurora-section__title">Les étapes clés pour livrer</h2>
               </div>
-              <div class="aurora-chip aurora-chip--tone">
+              <div class="aurora-chip aurora-chip--tone" data-ui="chip">
                 <span class="aurora-chip__dot"></span>
                 <span data-launch-date></span>
               </div>
@@ -2267,7 +2314,7 @@
     </div>
 
     <footer class="showcase-footer">
-      <p>Project Navigator · Version v1.0.234 · <a href="./mentions-legales.html">Mentions légales</a></p>
+      <p>Project Navigator · Version v1.0.235 · <a href="./mentions-legales.html">Mentions légales</a></p>
     </footer>
 
     <script>
@@ -3651,6 +3698,252 @@
             '--showcase-shell-overlay-anim': 'aurora-drift 26s ease-in-out infinite',
             '--showcase-button-sheen-opacity': '0.28',
             '--showcase-button-sheen-hover-opacity': '0.7'
+          }
+        },
+        {
+          id: 'apple-minimal',
+          name: 'Apple Atelier',
+          trend: 'Minimal premium',
+          description: 'Blanc lumineux, détails gris et bleu signature pour un rendu ultra net.',
+          preview: 'linear-gradient(135deg, #ffffff, #f5f5f7 45%, #0a84ff)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#f5f5f7',
+            '--showcase-bg-mid': '#ffffff',
+            '--showcase-bg-end': '#f5f5f7',
+            '--showcase-page-bg': '#f5f5f7',
+            '--showcase-footer-bg': '#ffffff',
+            '--showcase-footer-text': '#6b7280',
+            '--showcase-footer-link': '#111827',
+            '--showcase-font': "'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+            '--showcase-glow-primary': 'rgba(59, 130, 246, 0.18)',
+            '--showcase-glow-secondary': 'rgba(14, 116, 144, 0.12)',
+            '--showcase-text-strong': '#0f172a',
+            '--showcase-text-soft': '#475569',
+            '--showcase-accent-primary': '#0a84ff',
+            '--showcase-accent-secondary': '#60a5fa',
+            '--showcase-surface': 'rgba(255, 255, 255, 0.85)',
+            '--showcase-border-strong': 'rgba(148, 163, 184, 0.35)',
+            '--showcase-border-soft': 'rgba(148, 163, 184, 0.25)',
+            '--showcase-highlight-strong': 'rgba(59, 130, 246, 0.65)',
+            '--showcase-highlight-soft': 'rgba(191, 219, 254, 0.7)',
+            '--showcase-shadow-soft': 'rgba(59, 130, 246, 0.18)',
+            '--showcase-shadow-strong': 'rgba(15, 23, 42, 0.15)',
+            '--showcase-ink-strong': '#0f172a',
+            '--showcase-ink-soft': '#1f2937',
+            '--showcase-ink-muted': '#475569',
+            '--showcase-ink-subtle': '#64748b',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #0f172a, #0a84ff)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #0a84ff, #2563eb)',
+            '--showcase-cta-text': '#ffffff',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #ffffff 0%, #f5f5f7 55%, #e2e8f0 100%)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(226, 232, 240, 0.8))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #0a84ff 0%, #60a5fa 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+            '--showcase-radius-panel': '24px',
+            '--showcase-radius-card': '22px',
+            '--showcase-radius-button': '999px',
+            '--showcase-radius-input': '16px',
+            '--showcase-radius-hero': '30px',
+            '--showcase-radius-section': '34px',
+            '--showcase-letter-spacing-title': '-0.01em',
+            '--showcase-letter-spacing-button': '0.2em',
+            '--showcase-text-transform-title': 'none',
+            '--showcase-text-transform-button': 'uppercase',
+            '--showcase-title-weight': '600',
+            '--showcase-card-shadow': '0 24px 60px rgba(15, 23, 42, 0.12)',
+            '--showcase-panel-shadow': '0 24px 60px rgba(15, 23, 42, 0.12)'
+          }
+        },
+        {
+          id: 'netflix-noir',
+          name: 'Netflix Noir',
+          trend: 'Streaming pulse',
+          description: 'Contraste noir profond, rouge signature et typographie ciné.',
+          preview: 'linear-gradient(135deg, #141414, #e50914 45%, #b20710)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#141414',
+            '--showcase-bg-mid': '#181818',
+            '--showcase-bg-end': '#0b0b0b',
+            '--showcase-page-bg': '#141414',
+            '--showcase-footer-bg': '#0b0b0b',
+            '--showcase-footer-text': 'rgba(229, 231, 235, 0.75)',
+            '--showcase-footer-link': '#e50914',
+            '--showcase-font': "'Helvetica Neue', 'Arial Black', Arial, sans-serif",
+            '--showcase-glow-primary': 'rgba(229, 9, 20, 0.3)',
+            '--showcase-glow-secondary': 'rgba(248, 113, 113, 0.18)',
+            '--showcase-text-strong': '#f9fafb',
+            '--showcase-text-soft': 'rgba(229, 231, 235, 0.7)',
+            '--showcase-accent-primary': '#e50914',
+            '--showcase-accent-secondary': '#b20710',
+            '--showcase-surface': 'rgba(24, 24, 24, 0.9)',
+            '--showcase-border-strong': 'rgba(229, 9, 20, 0.35)',
+            '--showcase-border-soft': 'rgba(255, 255, 255, 0.08)',
+            '--showcase-highlight-strong': 'rgba(229, 9, 20, 0.8)',
+            '--showcase-highlight-soft': 'rgba(248, 113, 113, 0.5)',
+            '--showcase-shadow-soft': 'rgba(229, 9, 20, 0.25)',
+            '--showcase-shadow-strong': 'rgba(0, 0, 0, 0.7)',
+            '--showcase-ink-strong': '#f9fafb',
+            '--showcase-ink-soft': '#e5e7eb',
+            '--showcase-ink-muted': '#9ca3af',
+            '--showcase-ink-subtle': '#6b7280',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #f9fafb, #e50914)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #e50914, #b20710)',
+            '--showcase-cta-text': '#ffffff',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #111111 0%, #18181b 60%, #0b0b0b 100%)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(229, 9, 20, 0.2), rgba(0, 0, 0, 0.6))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #1f1f1f 0%, #111111 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #e50914 0%, #b20710 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #2a2a2a 0%, #111111 100%)',
+            '--showcase-accent-soft': 'rgba(229, 9, 20, 0.6)',
+            '--showcase-accent-strong': 'rgba(229, 9, 20, 0.9)',
+            '--showcase-accent-muted': 'rgba(178, 7, 16, 0.6)',
+            '--showcase-letter-spacing-title': '0.05em',
+            '--showcase-letter-spacing-button': '0.3em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '14px',
+            '--showcase-radius-card': '12px',
+            '--showcase-radius-button': '8px',
+            '--showcase-radius-input': '12px',
+            '--showcase-radius-hero': '20px',
+            '--showcase-radius-section': '22px',
+            '--showcase-card-shadow': '0 24px 60px rgba(0, 0, 0, 0.6)',
+            '--showcase-panel-shadow': '0 24px 60px rgba(0, 0, 0, 0.7)',
+            '--showcase-section-before': 'radial-gradient(circle at 20% 20%, rgba(229, 9, 20, 0.25), transparent 50%)',
+            '--showcase-section-after': 'radial-gradient(circle at 80% 0%, rgba(229, 9, 20, 0.18), transparent 45%)',
+            '--showcase-section-before-opacity': '0.25',
+            '--showcase-section-after-opacity': '0.2',
+            '--showcase-shell-overlay': 'radial-gradient(circle at 15% 10%, rgba(229, 9, 20, 0.25), transparent 40%)',
+            '--showcase-shell-overlay-opacity': '0.6'
+          }
+        },
+        {
+          id: 'nike-volt',
+          name: 'Nike Volt',
+          trend: 'Performance grid',
+          description: 'Contrastes noir/blanc, angles vifs et accents Volt pour l’impact.',
+          preview: 'linear-gradient(135deg, #111111, #f8fafc 45%, #baff00)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#f8fafc',
+            '--showcase-bg-mid': '#ffffff',
+            '--showcase-bg-end': '#f1f5f9',
+            '--showcase-page-bg': '#f8fafc',
+            '--showcase-footer-bg': '#111111',
+            '--showcase-footer-text': 'rgba(248, 250, 252, 0.7)',
+            '--showcase-footer-link': '#baff00',
+            '--showcase-font': "'Oswald', 'Helvetica Neue', Arial, sans-serif",
+            '--showcase-glow-primary': 'rgba(186, 255, 0, 0.2)',
+            '--showcase-glow-secondary': 'rgba(15, 23, 42, 0.15)',
+            '--showcase-text-strong': '#0f172a',
+            '--showcase-text-soft': '#334155',
+            '--showcase-accent-primary': '#111111',
+            '--showcase-accent-secondary': '#baff00',
+            '--showcase-surface': 'rgba(255, 255, 255, 0.9)',
+            '--showcase-border-strong': 'rgba(15, 23, 42, 0.2)',
+            '--showcase-border-soft': 'rgba(15, 23, 42, 0.12)',
+            '--showcase-highlight-strong': 'rgba(186, 255, 0, 0.85)',
+            '--showcase-highlight-soft': 'rgba(186, 255, 0, 0.5)',
+            '--showcase-shadow-soft': 'rgba(15, 23, 42, 0.18)',
+            '--showcase-shadow-strong': 'rgba(15, 23, 42, 0.35)',
+            '--showcase-ink-strong': '#0f172a',
+            '--showcase-ink-soft': '#1f2937',
+            '--showcase-ink-muted': '#475569',
+            '--showcase-ink-subtle': '#64748b',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #111111, #baff00)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #111111, #baff00)',
+            '--showcase-cta-text': '#0f172a',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 55%, #e2e8f0 100%)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(186, 255, 0, 0.18), rgba(15, 23, 42, 0.05))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #111111 0%, #baff00 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+            '--showcase-accent-soft': 'rgba(15, 23, 42, 0.4)',
+            '--showcase-accent-strong': 'rgba(186, 255, 0, 0.9)',
+            '--showcase-accent-muted': 'rgba(15, 23, 42, 0.25)',
+            '--showcase-letter-spacing-title': '0.08em',
+            '--showcase-letter-spacing-button': '0.32em',
+            '--showcase-text-transform-title': 'uppercase',
+            '--showcase-title-weight': '700',
+            '--showcase-radius-panel': '12px',
+            '--showcase-radius-card': '10px',
+            '--showcase-radius-button': '8px',
+            '--showcase-radius-input': '10px',
+            '--showcase-radius-hero': '20px',
+            '--showcase-radius-section': '22px',
+            '--showcase-card-shadow': '0 18px 40px rgba(15, 23, 42, 0.12)',
+            '--showcase-panel-shadow': '0 20px 45px rgba(15, 23, 42, 0.2)',
+            '--showcase-section-before': 'repeating-linear-gradient(90deg, rgba(15, 23, 42, 0.08) 0 1px, transparent 1px 16px)',
+            '--showcase-section-after': 'radial-gradient(circle at 80% 20%, rgba(186, 255, 0, 0.2), transparent 55%)',
+            '--showcase-section-before-opacity': '0.3',
+            '--showcase-section-after-opacity': '0.2',
+            '--showcase-section-before-anim': 'none',
+            '--showcase-section-after-anim': 'none',
+            '--showcase-shell-overlay':
+              'repeating-linear-gradient(0deg, rgba(15, 23, 42, 0.06) 0 1px, transparent 1px 20px)',
+            '--showcase-shell-overlay-opacity': '0.45',
+            '--showcase-shell-overlay-blend': 'multiply'
+          }
+        },
+        {
+          id: 'airbnb-sunrise',
+          name: 'Airbnb Warm',
+          trend: 'Hospitality glow',
+          description: 'Corail chaleureux, surfaces douces et accents teal accueillants.',
+          preview: 'linear-gradient(135deg, #fff7f5, #ff5a5f 45%, #00a699)',
+          vars: {
+            ...baseThemeVars,
+            '--showcase-bg-start': '#fff7f5',
+            '--showcase-bg-mid': '#ffffff',
+            '--showcase-bg-end': '#ffeceb',
+            '--showcase-page-bg': '#fff7f5',
+            '--showcase-footer-bg': '#fff0ee',
+            '--showcase-footer-text': '#6b7280',
+            '--showcase-footer-link': '#ff5a5f',
+            '--showcase-font': "'Circular Std', 'Inter', sans-serif",
+            '--showcase-glow-primary': 'rgba(255, 90, 95, 0.25)',
+            '--showcase-glow-secondary': 'rgba(0, 166, 153, 0.2)',
+            '--showcase-text-strong': '#111827',
+            '--showcase-text-soft': '#374151',
+            '--showcase-accent-primary': '#ff5a5f',
+            '--showcase-accent-secondary': '#00a699',
+            '--showcase-surface': 'rgba(255, 255, 255, 0.85)',
+            '--showcase-border-strong': 'rgba(255, 90, 95, 0.25)',
+            '--showcase-border-soft': 'rgba(15, 23, 42, 0.08)',
+            '--showcase-highlight-strong': 'rgba(255, 90, 95, 0.7)',
+            '--showcase-highlight-soft': 'rgba(255, 174, 178, 0.6)',
+            '--showcase-shadow-soft': 'rgba(255, 90, 95, 0.18)',
+            '--showcase-shadow-strong': 'rgba(15, 23, 42, 0.18)',
+            '--showcase-ink-strong': '#111827',
+            '--showcase-ink-soft': '#374151',
+            '--showcase-ink-muted': '#6b7280',
+            '--showcase-ink-subtle': '#9ca3af',
+            '--showcase-title-gradient': 'linear-gradient(120deg, #111827, #ff5a5f)',
+            '--showcase-cta-gradient': 'linear-gradient(120deg, #ff5a5f, #ff8a5b)',
+            '--showcase-cta-text': '#ffffff',
+            '--showcase-hero-gradient': 'linear-gradient(135deg, #ffffff 0%, #fff7f5 55%, #ffe4e6 100%)',
+            '--showcase-highlight-panel': 'linear-gradient(145deg, rgba(255, 90, 95, 0.18), rgba(255, 255, 255, 0.9))',
+            '--showcase-panel-soft-gradient': 'linear-gradient(135deg, #ffffff 0%, #ffe4e6 100%)',
+            '--showcase-panel-strong-gradient': 'linear-gradient(135deg, #ff5a5f 0%, #00a699 100%)',
+            '--showcase-panel-light-gradient': 'linear-gradient(135deg, #ffffff 0%, #fff7f5 100%)',
+            '--showcase-accent-soft': 'rgba(255, 90, 95, 0.55)',
+            '--showcase-accent-strong': 'rgba(255, 90, 95, 0.9)',
+            '--showcase-accent-muted': 'rgba(0, 166, 153, 0.65)',
+            '--showcase-letter-spacing-title': '0.01em',
+            '--showcase-letter-spacing-button': '0.18em',
+            '--showcase-text-transform-title': 'none',
+            '--showcase-title-weight': '600',
+            '--showcase-radius-panel': '28px',
+            '--showcase-radius-card': '24px',
+            '--showcase-radius-button': '999px',
+            '--showcase-radius-input': '16px',
+            '--showcase-radius-hero': '32px',
+            '--showcase-radius-section': '36px',
+            '--showcase-card-shadow': '0 20px 60px rgba(255, 90, 95, 0.18)',
+            '--showcase-panel-shadow': '0 24px 60px rgba(15, 23, 42, 0.15)'
           }
         }
       ];
